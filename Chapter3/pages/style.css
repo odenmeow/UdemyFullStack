@@ -1,6 +1,29 @@
-h1 {
-  color: #aabbcc;
-}
-h2 {
+/* ------------   Universal  ------------  */
+/* * {
+  color: yellowgreen;
+} */
+
+/* -------------  element selector ------------*/
+/* h2 {
   color: blue;
-}
+} */
+
+/* ------------   id selector  ------------ */
+/* #first-paragraph {
+  color: coral;
+} */
+
+/* ------------   class selector  ------------ */
+/* .b-text {
+  color: blue;
+} */
+/* .large-text {
+  font-size: 28px;
+} */
+
+/* ------------   element + class 並用   ------------*/
+/* a.large-text {
+  font-size: 35px;
+} */
+
+/* ------------ Selector 2 ------------ */
