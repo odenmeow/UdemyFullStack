@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="background-color: antiquewhite">
+      <p>課程 GET POST 使用 【id都+ _1】</p>
+      <form action="" method="GET">
+        <!-- <label for="名字"> 姓名: </label>
+      <input id="名字" type="text" name="姓名" /> -->
+        <label for="email_1"> 帳號: </label>
+        <input id="email_1" type="text" name="email_1" />
+        <label for="password_1"> 密碼: </label>
+        <input id="password_1" type="password" name="password_1" />
+        <button type="submit">提交</button>
+      </form>
+    </div>
+
+    <div style="background-color: rgb(213, 249, 136)">
+      <p>checkbox、email、file 【id都+ _2】</p>
+      <form action="" method="GET">
+        <label for="名字_2"> 姓名: </label>
+        <input id="名字_2" type="text" name="姓名_2" />
+        <label for="email_2"> 信箱: </label>
+        <input id="email_2" type="email" name="email_2" />
+
+        <input
+          id="電子報_2"
+          checked
+          type="checkbox"
+          name="是否訂閱_2"
+          value="是"
+        />
+        <label for="電子報_2">訂閱電子報</label>
+        <button type="submit">提交</button>
+        <input id="upload_2" type="file" name="upload_pic_2" />
+      </form>
+    </div>
+
+    <div style="background-color: rgb(158, 229, 255)">
+      <p>number password 【id都+ _3】</p>
+      <form action="" method="GET">
+        <label for="名字2"> 姓名: </label>
+        <input
+          id="名字_3"
+          type="text"
+          name="姓名_3"
+          minlength="5"
+          maxlength="20"
+          placeholder="中文姓名"
+        />
+        <label for="email_3"> 信箱: </label>
+        <input id="email_3" type="email" name="email_3" />
+        <label for="年齡_3"> 年齡: </label>
+        <input
+          id="年齡_3"
+          type="number"
+          name="age_3"
+          value="18"
+          min="0"
+          max="120"
+          step="0.01"
+        />
+        <label for="password_3"> 密碼: </label>
+        <input
+          type="password"
+          id="password_3"
+          name="password_3"
+          minlength="6"
+          maxlength="14"
+        />
+        <label for="seePass_3">顯示密碼</label>
+        <input type="checkbox" id="seePass_3" name="seePass_3" />
+
+        <input
+          id="電子報_3"
+          checked
+          type="checkbox"
+          name="是否訂閱_3"
+          value="是"
+        />
+        <label for="電子報_3">訂閱電子報</label>
+        <button type="submit">提交</button>
+      </form>
+    </div>
+
+    <script>
+      let checkbox3 = document.querySelector("#seePass_3");
+      //   下面這可以替代
+      //   let checkbox = document.getElementById("seePass");
+      let password3 = document.querySelector("#password_3");
+
+      checkbox3.addEventListener("click", () => {
+        if (password3.type == "text") {
+          password3.type = "password";
+        } else {
+          password3.type = "text";
+        }
+      });
+    </script>
+
+    <div style="background-color: rgb(158, 229, 255)">
+      <p>radio range 【id都+ _4】</p>
+      <form action="" method="GET">
+        <label for="名字_4"> 姓名: </label>
+        <input
+          id="名字_4"
+          type="text"
+          name="姓名_4"
+          minlength="5"
+          maxlength="20"
+          placeholder="中文姓名"
+        />
+        <input id="男性_4" type="radio" name="gender_4" value="male" required />
+        <label for="男性_4">男性</label>
+
+        <input
+          id="女性_4"
+          type="radio"
+          name="gender_4"
+          value="female"
+          required
+        />
+        <label for="女性_4">女性</label>
+
+        <br />
+        <label for="email_4"> 信箱: </label>
+        <input id="email_4" type="email" name="email_4" required />
+        <label for="salary_4">薪水 :</label>
+        0<input
+          type="range"
+          max="50000"
+          min="0"
+          step="10000"
+          name="salary_4"
+          id="salary_4"
+        />50000
+        <br />
+
+        <label for="年齡_4"> 年齡: </label>
+        <input
+          id="年齡_4"
+          type="number"
+          name="age_4"
+          value="18"
+          min="0"
+          max="120"
+          step="0.01"
+        />
+        <label for="password_4"> 密碼: </label>
+        <input
+          type="password"
+          id="password_4"
+          name="password_4"
+          minlength="6"
+          maxlength="14"
+        />
+        <label for="seePass_4">顯示密碼</label>
+        <input type="checkbox" id="seePass_4" name="seePass_4" />
+
+        <input
+          id="電子報_4"
+          checked
+          type="checkbox"
+          name="是否訂閱_4"
+          value="是"
+        />
+        <label for="電子報_4">訂閱電子報</label>
+        <button type="submit">提交</button>
+      </form>
+    </div>
+    <script>
+      let checkbox4 = document.querySelector("#seePass_4");
+      //   下面這可以替代
+      //   let checkbox = document.getElementById("seePass");
+      let password4 = document.querySelector("#password_4");
+
+      checkbox4.addEventListener("click", () => {
+        if (password4.type == "text") {
+          password4.type = "password";
+        } else {
+          password4.type = "text";
+        }
+      });
+    </script>
+
+    <div style="background-color: rgb(247, 205, 231)">
+      <p>button, selection, option, datalist, textarea 【id都+ _5】</p>
+      <button type="button">我是按鈕</button>
+      不在表單標籤內，沒作用
+      (沒加上script，加了才可以附加功能)，皮膚色是表單範圍
+      <form action="" method="GET" style="background-color: bisque">
+        <label for="名字_5"> 姓名: </label>
+        <input
+          id="名字_5"
+          type="text"
+          name="姓名_5"
+          minlength="5"
+          maxlength="20"
+          placeholder="中文姓名"
+        />
+        <!-- <input id="男性_5" type="radio" name="gender_5" value="male" required /> -->
+        <label for="sex_5">選擇性別</label>
+        <select name="gender_5" id="sex_5" required>
+          <option></option>
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+          <option value="other">不定義</option>
+        </select>
+
+        <label for="area5">地區:</label>
+        <input list="area-list_5" type="text" name="area" id="area5" />
+        <datalist id="area-list_5">
+          <option value="台北市">台北市</option>
+          <option value="新北市">新北市</option>
+          <option value="桃園市">桃園市</option>
+          <option value="台中市">台中市</option>
+          <option value="高雄市">高雄市</option>
+        </datalist>
+        <br />
+
+        <!-- <input
+          id="女性_5"
+          type="radio"
+          name="gender_5"
+          value="female"
+          required
+        /> -->
+        <!-- <label for="女性_5">女性</label> -->
+
+        <label for="email_5"> 信箱: </label>
+        <input id="email_5" type="email" name="email_5" required />
+        <label for="salary_5">薪水 :</label>
+        0<input
+          type="range"
+          max="50000"
+          min="0"
+          step="10000"
+          name="salary_5"
+          id="salary_5"
+        />50000
+        <br />
+
+        <label for="年齡_5"> 年齡: </label>
+        <input
+          id="年齡_5"
+          type="number"
+          name="age_5"
+          value="18"
+          min="0"
+          max="120"
+          step="0.01"
+        />
+        <label for="password_5"> 密碼: </label>
+        <input
+          type="password"
+          id="password_5"
+          name="password_5"
+          minlength="6"
+          maxlength="14"
+        />
+        <label for="seePass_5">顯示密碼</label>
+        <input type="checkbox" id="seePass_5" name="seePass_5" />
+
+        <input
+          id="電子報_5"
+          checked
+          type="checkbox"
+          name="是否訂閱_5"
+          value="是"
+        />
+        <label for="電子報_5">訂閱電子報</label>
+        <br />
+        <label for="suggestion_5">給網站的建議</label>
+        <textarea
+          name="suggestion"
+          id="suggestion_5"
+          cols="30"
+          rows="10"
+          placeholder="建議填在這邊"
+        ></textarea>
+
+        <button type="submit">提交</button>
+      </form>
+    </div>
+    <script>
+      let checkbox5 = document.querySelector("#seePass_5");
+      //   下面這可以替代
+      //   let checkbox = document.getElementById("seePass");
+      let password5 = document.querySelector("#password_5");
+
+      checkbox5.addEventListener("click", () => {
+        if (password5.type == "text") {
+          password5.type = "password";
+        } else {
+          password5.type = "text";
+        }
+      });
+    </script>
+    <hr />
+    Made By Oni © Reserved / &#9816;
+  </body>
+</html>
