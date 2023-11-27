@@ -1,29 +1,20 @@
-/* ------------   Universal  ------------  */
-/* * {
-  color: yellowgreen;
+/* -------Grouping Selector------------ */
+/* h1,
+h2 {
+  color: red;
 } */
 
-/* -------------  element selector ------------*/
-/* h2 {
-  color: blue;
+/* -------Descendant Selector------------ */
+
+/* div.link1 a {
+  color: red;
+}
+div.link2 a {
+  color: green;
 } */
 
-/* ------------   id selector  ------------ */
-/* #first-paragraph {
-  color: coral;
-} */
+/* -------Attribute Selector------------ */
 
-/* ------------   class selector  ------------ */
-/* .b-text {
-  color: blue;
-} */
-/* .large-text {
-  font-size: 28px;
-} */
-
-/* ------------   element + class 並用   ------------*/
-/* a.large-text {
-  font-size: 35px;
-} */
-
-/* ------------ Selector 2 ------------ */
+input[type="text"] {
+  color: rgb(248, 53, 53);
+}
