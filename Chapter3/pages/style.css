@@ -1,6 +1,26 @@
-h1.gugu {
-  color: red;
+/* ------------------ 使用 em ----------------- */
+/* body {
+  font-size: 40;
 }
-.gugu {
-  color: blue;
+h1 {
+  font-size: 1em;
+} */
+
+/* ------------------ 使用 vw ----------------- */
+
+/* h1 {
+  background-color: pink;
+  width: 99vw;
+} */
+
+/* ------------------ 使用 % ----------------- */
+.box {
+  width: 500px;
+  background-color: red;
+  height: 300px;
+}
+.inner-box {
+  width: 50%;
+  background-color: blue;
+  height: 20%;
 }
