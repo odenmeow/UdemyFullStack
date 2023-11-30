@@ -1,51 +1,20 @@
-/* ------------------ 使用 text-align ----------------- */
+/* ------------------ 使用 background-image ----------------- */
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  background-image: url(../images/tommy-tsao-TZldfnLPZ3Q-unsplash.jpg);
+
+  /* background-size: contain; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: top; */
+  background-position: bottom;
+  /* 使用bottom會發現上面被裁切*/
+}
+/* ------------------ 使用 Background-color ----------------- */
 h1 {
-  text-align: center;
+  background-color: antiquewhite;
 }
-
-p {
-  text-align: center;
-}
-
-/* ------------------ 使用 text-align (table cell) ----------------- */
-table,
-tr,
-th,
-td {
-  border: 1px #ed5151 solid;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-/* ----- 對 <a> 使用text-align無效 因為不是block elem \ table cell ------ */
-
-/* -------------------------- <a>  = inline elem ------------------ */
-/* a {
-  text-align: right;
-} */
-/* ------------------ <a>  讓超連結的底線消失 /貫穿文字 ---------------- */
-
-a {
-  text-decoration: none;
-}
-a {
-  text-decoration: line-through;
-}
-/* ------------------ 使用 letter-spacing ----------------- */
-/* 
-p {
-  letter-spacing: 5px;
-} */
-/* ------------------ 使用 line-height ----------------- */
-
-p {
-  line-height: 50px;
-}
-
-/* ------------------ 使用 font-family google font ----------------- */
-img + p {
-  font-family: "Noto Sans TC", sans-serif;
-}
-p::first-line {
-  font-family: "Noto Sans TC", sans-serif;
+/* ------------------ 使用 Background  ( shorthand ) ----------------- */
+body {
+  background: url(../images/tommy-tsao-TZldfnLPZ3Q-unsplash.jpg);
 }
