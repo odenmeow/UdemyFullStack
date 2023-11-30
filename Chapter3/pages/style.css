@@ -1,27 +1,6 @@
-/* -------Psuedo Class +表單.html+ text only------------ */
-/* input[type="text"] {
-  color: rgb(248, 53, 53);
+h1.gugu {
+  color: red;
 }
-input[type="text"]:hover {
-  color: rgba(165, 253, 42, 0.767);
-}
-/* active 按下去才會變色 */
-/* input[type="text"]:active {
-  color: #da8300c4;
-}
-input[type="email"]:focus {
-  color: #4958ffc4;
-} */
-
-/* -------Psuedo element +GuGon.html +增加<p> 段落來測試------------ */
-/* p::before {
-  content: ">>";
-  color: rgb(47, 47, 255);
-} */
-/* p::first-line {
-  font-size: 29px;
-  color: rgb(47, 47, 255);
-} */
-*::selection {
-  background-color: aqua;
+.gugu {
+  color: blue;
 }
