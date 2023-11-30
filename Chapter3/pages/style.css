@@ -1,26 +1,43 @@
-/* ------------------ 使用 em ----------------- */
-/* body {
-  font-size: 40;
-}
+/* ------------------ 使用 text-align ----------------- */
 h1 {
-  font-size: 1em;
-} */
-
-/* ------------------ 使用 vw ----------------- */
-
-/* h1 {
-  background-color: pink;
-  width: 99vw;
-} */
-
-/* ------------------ 使用 % ----------------- */
-.box {
-  width: 500px;
-  background-color: red;
-  height: 300px;
+  text-align: center;
 }
-.inner-box {
-  width: 50%;
-  background-color: blue;
-  height: 20%;
+
+p {
+  text-align: center;
+}
+
+/* ------------------ 使用 text-align (table cell) ----------------- */
+table,
+tr,
+th,
+td {
+  border: 1px #ed5151 solid;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+/* ----- 對 <a> 使用text-align無效 因為不是block elem \ table cell ------ */
+
+/* -------------------------- <a>  = inline elem ------------------ */
+a {
+  text-align: right;
+}
+/* ------------------ <a>  讓超連結的底線消失 /貫穿文字 ---------------- */
+
+a {
+  text-decoration: none;
+}
+a {
+  text-decoration: line-through;
+}
+/* ------------------ 使用 letter-spacing ----------------- */
+
+p {
+  letter-spacing: 5px;
+}
+/* ------------------ 使用 line-height ----------------- */
+
+p {
+  line-height: 50px;
 }
