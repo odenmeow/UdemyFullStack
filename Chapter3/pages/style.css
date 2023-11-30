@@ -20,9 +20,9 @@ td {
 /* ----- 對 <a> 使用text-align無效 因為不是block elem \ table cell ------ */
 
 /* -------------------------- <a>  = inline elem ------------------ */
-a {
+/* a {
   text-align: right;
-}
+} */
 /* ------------------ <a>  讓超連結的底線消失 /貫穿文字 ---------------- */
 
 a {
@@ -32,12 +32,20 @@ a {
   text-decoration: line-through;
 }
 /* ------------------ 使用 letter-spacing ----------------- */
-
+/* 
 p {
   letter-spacing: 5px;
-}
+} */
 /* ------------------ 使用 line-height ----------------- */
 
 p {
   line-height: 50px;
+}
+
+/* ------------------ 使用 font-family google font ----------------- */
+img + p {
+  font-family: "Noto Sans TC", sans-serif;
+}
+p::first-line {
+  font-family: "Noto Sans TC", sans-serif;
 }
