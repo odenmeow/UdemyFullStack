@@ -1,67 +1,9 @@
-/* ------------------------------ (54) Stacking Context ----------------------------- */
-/* body {
-  height: 3000px;
-  width: 2000px;
-}
+/* ------------------------------ (55) Transition ----------------------------- */
 
-div.container {
-  width: 500px;
-  height: 1000px;
-  left: 100px;
-  background-color: aquamarine;
+h1 {
+  transition: all 2s ease-out;
 }
-.box {
-  width: 200px;
-  height: 200px;
-}
-.small-box {
-  width: 100px;
-  height: 100px;
-}
-.box1 {
-  background-color: beige;
-}
-.box2 {
-  background-color: goldenrod;
-  position: relative;
-  z-index: 0;
-}
-.box3 {
-  background-color: cornflowerblue;
-}
-.box4 {
-  background-color: greenyellow;
-  position: absolute;
-  top: 70px;
-
-  z-index: -1;
-}
-.box5 {
-  background-color: brown;
-  position: relative;
-  z-index: 2;
-} */
-
-/* ------------------------------ (54) 表格樣式 ----------------------------- */
-
-table,
-th,
-tr,
-td {
-  /* border: solid salmon; */
-  border-bottom: solid greenyellow;
-  border-collapse: collapse;
-}
-th,
-td {
-  padding: 50px 150px;
-  /* Opacity 0 =透明 1=實體=預設*/
-  opacity: 0.3;
-}
-tr:hover {
+h1:hover {
   background-color: aqua;
 }
-
-td {
-  cursor: pointer;
-}
+/* 提示transition放入:hover則只有懸浮時有過渡效果、離開沒有 */
