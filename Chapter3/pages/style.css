@@ -1,44 +1,37 @@
-/* ------------------------------ (56) Transform ----------------------------- */
-/* div.container {
-  width: 300px;
-  height: 300px;
-  background-color: aqua;
-  position: relative;
-}
-div.box {
-  width: 100px;
-  height: 100px;
-  background-color: orange;
-  transition: all 1s ease-out;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-div.box:hover {
-  transform: translate(100px, 200px);
-} */
-/* ------------------------------ (56) Rotate + scale ----------------------------- */
+/* ------------------------------ (57) Animation ----------------------------- */
 div.container {
   width: 300px;
   height: 300px;
   background-color: aqua;
-  position: relative;
 }
 div.box {
   width: 100px;
   height: 100px;
   background-color: orange;
-  transition: all 1s ease-out;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  /*下面能一行替代其後面的部分  */
+  /* animation: changeColor 2s ease-in 1s infinite alternate forwards; */
+  animation-name: changeColor;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  /* 倒放動畫 */
+  /* animation-direction: reverse; */
+  /* 正反播放 */
+  animation-direction: alternate;
+  /* 維持最後顏色 */
+  animation-fill-mode: forwards;
 }
-div.box:hover {
-  /* 下面的translate是為了不要讓div.box的transform失效 */
-  transform: scale(2, 1) RotateZ(180deg) translate(-50%, -50%);
-  /* 可以自己玩XYZ ，取下Scale看看原本的*/
-  /* 不能夠重複寫 無效而且壞掉*/
-  /* transform: translate(-50%, -50%); */
+@keyframes changeColor {
+  from {
+    background-color: yellow;
+    top: 0px;
+    left: 0px;
+  }
+  to {
+    background-color: blue;
+    top: 200px;
+    left: 200px;
+  }
 }
