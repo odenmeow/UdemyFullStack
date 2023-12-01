@@ -1,9 +1,44 @@
-/* ------------------------------ (55) Transition ----------------------------- */
-
-h1 {
-  transition: all 2s ease-out;
-}
-h1:hover {
+/* ------------------------------ (56) Transform ----------------------------- */
+/* div.container {
+  width: 300px;
+  height: 300px;
   background-color: aqua;
+  position: relative;
 }
-/* 提示transition放入:hover則只有懸浮時有過渡效果、離開沒有 */
+div.box {
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  transition: all 1s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+div.box:hover {
+  transform: translate(100px, 200px);
+} */
+/* ------------------------------ (56) Rotate + scale ----------------------------- */
+div.container {
+  width: 300px;
+  height: 300px;
+  background-color: aqua;
+  position: relative;
+}
+div.box {
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  transition: all 1s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+div.box:hover {
+  /* 下面的translate是為了不要讓div.box的transform失效 */
+  transform: scale(2, 1) RotateZ(180deg) translate(-50%, -50%);
+  /* 可以自己玩XYZ ，取下Scale看看原本的*/
+  /* 不能夠重複寫 無效而且壞掉*/
+  /* transform: translate(-50%, -50%); */
+}
