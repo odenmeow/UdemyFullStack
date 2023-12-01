@@ -1,27 +1,57 @@
-/* ------------------------------ block ----------------------------- */
-.myClass {
-  display: block;
-  width: 250px;
-  height: 100px;
-  background-color: burlywood;
-}
-/* ------------------------------ inline ----------------------------- */
-.myClass2 {
-  width: 250px;
-  height: 100px;
-  background-color: rgb(244, 161, 52);
-  padding: 1.5rem 3rem;
-}
-/* ------------------------------ inline-block ----------------------------- */
-#image1 {
-  width: 600px;
-  height: 300px;
-}
-#image2 {
+/* ------------------------------ position static + relative ----------------------------- */
+
+/* div.container {
   width: 500px;
-  height: 400px;
+  height: 2000px;
+  background-color: aquamarine;
 }
-#image3 {
-  width: 600px;
-  height: 300px;
+.box {
+  width: 200px;
+  height: 200px;
+}
+.box1 {
+  background-color: beige;
+}
+.box2 {
+  background-color: goldenrod;
+  position: relative;
+  top: 100px;
+  left: 30px;
+  z-index: 10;
+}
+.box3 {
+  background-color: cornflowerblue;
+  position: static;
+  right: 20px;
+  z-index: 15;
+} */
+
+/* ------------------------------ absolute ----------------------------- */
+
+div.container {
+  width: 500px;
+  height: 2000px;
+  background-color: aquamarine;
+  /* 如果父元素 是 positioned elem 則依據此元素定位，打開看差別 */
+  /* position: relative; */
+}
+.box {
+  width: 200px;
+  height: 200px;
+}
+.box1 {
+  background-color: beige;
+}
+.box2 {
+  background-color: goldenrod;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 10;
+}
+.box3 {
+  background-color: cornflowerblue;
+  position: static;
+  right: 20px;
+  z-index: 15;
 }
