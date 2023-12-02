@@ -1,0 +1,51 @@
+/* ------------------------------ (60) flex-direction ----------------------------- */
+div.container {
+  border: 3px solid black;
+  display: flex;
+  /* flex-direction: row-reverse; */
+  /* wrap 預設=no wrap */
+  flex-wrap: wrap;
+}
+.box {
+  width: 250px;
+  height: 250px;
+}
+.box1 {
+  background-color: coral;
+}
+.box2 {
+  background-color: aquamarine;
+}
+.box3 {
+  background-color: burlywood;
+}
+.box4 {
+  background-color: goldenrod;
+}
+.box5 {
+  background-color: thistle;
+}
+/* ------------------------------ a 原本不能改w h  ----------------------------- */
+div.container2 {
+  display: flex;
+}
+/* 直屬子標籤用 > 選擇 */
+div.container2 > a {
+  color: goldenrod;
+  /* %依舊不能用在高 */
+  height: 35px;
+  width: 15%;
+  background-color: cadetblue;
+  border: salmon solid 2px;
+}
+/* ------------------------------ smallbox in flex item----------------------------- */
+/* 拿掉flex 或說改成block(div預設) 可知有什麼不同 */
+.box2 {
+  display: flex;
+}
+.smallbox {
+  border: 3px solid violet;
+  height: 70px;
+  width: 70px;
+  /* w 90也會有所感悟 */
+}
