@@ -53,3 +53,51 @@ nav ul li a:hover {
 .active {
   color: yellow;
 }
+section.left {
+  margin-right: 3rem;
+}
+section.left {
+  margin-right: 3rem;
+}
+section.left table {
+  margin-top: 1rem;
+}
+section.left > figure {
+  width: 250px;
+}
+section.left > figure > img {
+  max-width: 100%;
+  height: auto;
+}
+section.left > figure > img.vertical-expand {
+  max-width: none; /* 移除最大寬度限制 */
+}
+
+section.right {
+  margin-top: 1rem;
+}
+hr {
+  margin: 0.5rem 0rem;
+}
+section.right ul {
+  margin-top: 1rem;
+}
+section.right li {
+  margin-left: 2rem;
+  /* overflow-wrap: break-word; */
+}
+
+section.right {
+  flex-basis: 500px;
+  flex-grow: 5;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+main h3 {
+  margin: 1rem 0rem;
+}
+main section {
+}
