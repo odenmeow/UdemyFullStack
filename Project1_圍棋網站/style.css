@@ -67,9 +67,9 @@ section.left > figure > img {
   width: 100%;
   height: auto;
 }
-section.left > figure > img.vertical-expand {
-  max-width: none; /* 移除最大寬度限制 */
-}
+/* section.left > figure > img.vertical-expand {
+  max-width: none;  移除最大寬度限制 
+} */
 section.left > figure figcaption {
   text-align: center;
 }
@@ -106,5 +106,29 @@ main {
 main h3 {
   margin: 1rem 0rem;
 }
-main section {
+
+main.main-korea {
+  display: block;
+}
+
+main.main-korea > section h2 {
+  padding: 0.5rem 1rem;
+}
+
+main.main-korea > section > article {
+  margin: 1.5rem 3rem;
+  padding: 0.5rem;
+  border: 2px solid goldenrod;
+  overflow: auto;
+}
+main.main-korea > section > article h3 {
+  margin: 0rem 0rem;
+  font-size: 1.5rem;
+  color: darkolivegreen;
+}
+main.main-korea > section > article h4 {
+  margin: 0rem 0rem;
+  padding-left: 0.3rem;
+  font-size: 1rem;
+  color: darkolivegreen;
 }
