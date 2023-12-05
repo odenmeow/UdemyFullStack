@@ -5,6 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>圍棋資訊網 | 韓國棋院</title>
     <link rel="stylesheet" href="./style.css" />
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      // Load the Visualization API and the corechart package.
+      google.charts.load("current", { packages: ["corechart"] });
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "Topping");
+        data.addColumn("number", "Slices");
+        data.addRows([
+          ["棋聖", 45000000],
+          ["十段", 7000000],
+          ["本因坊", 28000000],
+          ["碁聖", 8000000],
+          ["名人", 30000000],
+          ["王座", 14000000],
+          ["天元", 13000000],
+        ]);
+
+        // Set chart options
+        var options = {
+          title: "日本七大棋戰獎金分布圓餅圖",
+          width: 400,
+          height: 300,
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(
+          document.getElementById("chart_div")
+        );
+        chart.draw(data, options);
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -26,12 +69,16 @@
     </header>
     <main class="main-japan">
       <section>
-        <figure>
-          <img
-            src="./images/Nihon_Ki-in_Headquarter_(2016-05-05)_5.jpg"
-            alt="日本棋院"
-          />
-        </figure>
+        <div class="jp-fig">
+          <figure>
+            <img
+              src="./images/Nihon_Ki-in_Headquarter_(2016-05-05)_5.jpg"
+              alt="( 日本棋院 )"
+            />
+            <figcaption>( 日本棋院 )</figcaption>
+          </figure>
+        </div>
+
         <article class="info">
           <p>
             日本棋院（日語：一般公益法人日本棋院／いっぱんこうえきほうじんにほんきいん
@@ -53,8 +100,8 @@
       <hr />
 
       <section>
-        <article class="competition-introduce">
-          <h2>日本棋院頭銜賽</h2>
+        <article id="competition-introduce">
+          <h2 style="margin: 1rem; color: darkcyan">日本棋院頭銜賽</h2>
           <p>
             日本圍棋七大主要賽事，根據獎金排序是棋聖、名人、本因坊、王座、天元、碁聖和十段。在這當中獎金較高的三個賽事棋聖、名人、本因坊並稱“三大頭銜戰”。其中棋聖是最高頭銜。如果同時包攬這三個頭銜的話，就被稱為“大三冠”。
             職業棋手爭冠的棋賽有很多，但是爭奪七個頭銜戰的“七大棋戰”和其他比賽有什麼區別呢？
@@ -73,6 +120,9 @@
             <li>天元：1300萬日幣</li>
           </ul>
         </article>
+        <div class="pie-chart">
+          <div id="chart_div"></div>
+        </div>
       </section>
     </main>
   </body>

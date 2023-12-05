@@ -20,6 +20,7 @@ header div.top {
   /* background-position: bottom; */
   /* background-repeat: no-repeat; */
   /* background-size: contain; */
+  overflow: auto;
 }
 
 header div.top h1 {
@@ -57,8 +58,9 @@ nav ul li a:hover {
 section.left {
   flex: 1 1 200px;
   margin-top: 1rem;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
+
 section.left > figure {
   width: 100%;
   margin-bottom: 2rem;
@@ -76,15 +78,20 @@ section.left > figure figcaption {
 
 section.left > table {
   /* border: 2px solid blueviolet; */
+  margin-left: 1.5rem;
 }
 section.left > table td {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 section.right {
   flex-basis: 500px;
   flex-grow: 5;
   margin-top: 1rem;
+  margin-left: 1.5rem;
+}
+section.right hr {
+  margin-right: 1.5rem;
 }
 section.right ul {
   margin-top: 1rem;
@@ -102,7 +109,6 @@ hr {
 main {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
 }
 main h3 {
   margin: 1rem 0rem;
@@ -132,4 +138,44 @@ main.main-korea > section > article h4 {
   padding-left: 0.3rem;
   font-size: 1rem;
   color: darkolivegreen;
+}
+main.main-japan {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+main.main-japan section {
+  display: flex;
+  flex-wrap: wrap;
+}
+div.jp-fig {
+  flex: 1 1 300px;
+  margin: 2rem;
+}
+main.main-japan > section figure figcaption {
+  text-align: center;
+  margin-top: 1rem;
+}
+main.main-japan > section figure img {
+  width: 100%;
+  height: auto;
+}
+article.info {
+  flex: 1 1 600px;
+  margin: 2.5rem;
+}
+main.main-japan > section > article ul {
+  margin: 0.5rem 3rem;
+}
+
+#competition-introduce {
+  flex: 1 1 400px;
+  /* border: solid 1px red; */
+}
+.pie-chart {
+  flex: 1 1 400px;
+  margin-top: 0.5rem;
+}
+#chart_div {
+  transform: translate(10%, 10%);
 }
