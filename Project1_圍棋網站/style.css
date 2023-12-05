@@ -102,6 +102,7 @@ hr {
 main {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 main h3 {
   margin: 1rem 0rem;
