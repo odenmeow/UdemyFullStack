@@ -53,31 +53,38 @@ nav ul li a:hover {
 .active {
   color: yellow;
 }
+
 section.left {
-  margin-right: 3rem;
-}
-section.left {
-  margin-right: 3rem;
-}
-section.left table {
+  flex: 1 1 200px;
   margin-top: 1rem;
+  margin-right: 2rem;
 }
 section.left > figure {
-  width: 250px;
+  width: 100%;
+  margin-bottom: 2rem;
 }
 section.left > figure > img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 section.left > figure > img.vertical-expand {
   max-width: none; /* 移除最大寬度限制 */
 }
+section.left > figure figcaption {
+  text-align: center;
+}
+
+section.left > table {
+  /* border: 2px solid blueviolet; */
+}
+section.left > table td {
+  padding: 1rem;
+}
 
 section.right {
+  flex-basis: 500px;
+  flex-grow: 5;
   margin-top: 1rem;
-}
-hr {
-  margin: 0.5rem 0rem;
 }
 section.right ul {
   margin-top: 1rem;
@@ -86,12 +93,12 @@ section.right li {
   margin-left: 2rem;
   /* overflow-wrap: break-word; */
 }
-
-section.right {
-  flex-basis: 500px;
-  flex-grow: 5;
+p {
+  padding: 0.5rem 1rem;
 }
-
+hr {
+  margin: 0.5rem 0rem;
+}
 main {
   display: flex;
   flex-wrap: wrap;
