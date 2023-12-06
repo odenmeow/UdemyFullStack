@@ -59,6 +59,7 @@ section.left {
   flex: 1 1 200px;
   margin-top: 1rem;
   margin-right: 1.5rem;
+  margin-left: 1rem;
 }
 
 section.left > figure {
@@ -171,6 +172,7 @@ main.main-japan > section > article ul {
 #competition-introduce {
   flex: 1 1 400px;
   /* border: solid 1px red; */
+  margin-left: 1rem;
 }
 .pie-chart {
   flex: 1 1 400px;
@@ -178,4 +180,30 @@ main.main-japan > section > article ul {
 }
 #chart_div {
   transform: translate(10%, 10%);
+}
+
+.main-china {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#china-table {
+  margin-left: 1rem;
+}
+#china-table tbody td {
+  padding: 0.25rem 0.5rem;
+}
+
+#china-table,
+#china-table tbody tr {
+  border-bottom: 1px solid darkcyan;
+  border-collapse: collapse;
+  padding: 0.2rem 0;
+}
+#china-table thead td {
+  background-color: darkcyan;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
 }
