@@ -165,6 +165,34 @@ body {
       }
     }
   }
+  footer {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    section.logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 20vw;
+      }
+      h3 {
+        font-size: 2.5rem;
+      }
+    }
+    section.links {
+      margin-top: 2rem;
+      a {
+        img {
+          width: 5vh;
+          margin: 0 1rem;
+        }
+      }
+    }
+  }
 }
 // div#myDiv {
 //   background-image: url(../images/北海道雪景.jpg);
@@ -187,7 +215,7 @@ body {
             position: absolute;
             left: 0px;
             width: 100vw; /* 占满父元素宽度 */
-            background-color: rgb(248, 239, 194); /* 下方背景颜色 */
+            background-color: rgb(234, 226, 184); /* 下方背景颜色 */
             z-index: -1;
           }
         }

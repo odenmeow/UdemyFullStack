@@ -150,6 +150,32 @@ body main section.google-map iframe {
   width: 100%;
   height: 40vh;
 }
+body footer {
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+body footer section.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body footer section.logo img {
+  width: 20vw;
+}
+body footer section.logo h3 {
+  font-size: 2.5rem;
+}
+body footer section.links {
+  margin-top: 2rem;
+}
+body footer section.links a img {
+  width: 5vh;
+  margin: 0 1rem;
+}
 
 @media screen and (max-width: 1024px) {
   body header {
@@ -169,7 +195,7 @@ body main section.google-map iframe {
     position: absolute;
     left: 0px;
     width: 100vw; /* 占满父元素宽度 */
-    background-color: rgb(248, 239, 194); /* 下方背景颜色 */
+    background-color: rgb(234, 226, 184); /* 下方背景颜色 */
     z-index: -1;
   }
   body header section.logo img {
