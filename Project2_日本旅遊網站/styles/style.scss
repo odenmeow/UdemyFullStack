@@ -67,7 +67,7 @@ main {
     background-image: url(../images/日本櫻花.jpg);
     background-size: cover;
     background-position: center;
-    transition: all 0.75s ease;
+    transition: all 1.5s ease;
     position: relative;
     z-index: 0; //relative+index非auto => 形成stacking context
     display: flex;
@@ -87,6 +87,42 @@ main {
       color: white;
       font-size: 2.5rem;
       text-align: center;
+    }
+  }
+  section.info-circles {
+    background-color: white;
+    padding: 2rem 1rem;
+
+    h3 {
+      text-align: center;
+      font-size: 2rem;
+    }
+    div.circles {
+      //   border: 3px solid black;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      div.circle {
+        padding: 1rem;
+        // border: 1px red solid;
+        // 不分剩餘空間每個div最多，只占250px
+        flex: 0 1 250px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 80%;
+          border-radius: 100%;
+          transition: all 0.1s ease-in;
+          padding: 0.3rem;
+          &:hover {
+            border: 2px $themeColor solid;
+          }
+        }
+      }
     }
   }
 }
