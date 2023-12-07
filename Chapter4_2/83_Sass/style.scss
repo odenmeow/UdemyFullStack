@@ -1,0 +1,14 @@
+$anchorColor: orange;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import "./header";
+
+h1,
+h2 {
+  color: $anchorColor;
+}

@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+header nav ul li {
+  list-style-type: none;
+}
+header nav ul li a {
+  color: orange;
+  text-decoration: none;
+}
+header nav ul li a:hover {
+  color: green;
+}
+
+h1,
+h2 {
+  color: orange;
+}/*# sourceMappingURL=style.css.map */
