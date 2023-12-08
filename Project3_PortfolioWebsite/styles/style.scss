@@ -74,5 +74,61 @@ body {
         }
       }
     }
+
+    section.about-me {
+      background-color: rgb(223, 255, 238);
+      padding: 5rem 0rem;
+      display: flex;
+      justify-content: center;
+      section.description {
+        width: 50%;
+
+        h2 {
+          text-align: center;
+          margin-bottom: 1.5rem;
+          font-size: 2rem;
+        }
+
+        .skill-description-main {
+          &::before {
+            content: "主要技能是";
+            display: inline-block;
+            box-sizing: border-box;
+            width: 5rem;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            background-color: rgb(255, 253, 233);
+            border-radius: 35%;
+          }
+        }
+        .skill-description-rest {
+          &::before {
+            content: "其餘有";
+            box-sizing: border-box;
+            width: 4rem;
+            margin-left: 0.5rem;
+            margin-right: 2.5rem;
+            background-color: rgb(255, 253, 233);
+            border-radius: 35%;
+          }
+        }
+        .skill-description-contact {
+          &::before {
+            content: "接觸過";
+            box-sizing: border-box;
+            width: 4rem;
+            margin-left: 0.5rem;
+            margin-right: 2.5rem;
+            background-color: rgb(255, 253, 233);
+            border-radius: 35%;
+          }
+        }
+
+        .my-skills-group {
+          text-align: center;
+          margin: 1rem 0;
+        }
+      }
+    }
   }
 }
