@@ -76,54 +76,54 @@ body {
     }
 
     section.about-me {
-      background-color: rgb(223, 255, 238);
+      background-color: rgb(202, 248, 223);
       padding: 5rem 0rem;
       display: flex;
       justify-content: center;
       section.description {
         width: 50%;
-
+        div.progress {
+          border: 1px cadetblue solid;
+        }
         h2 {
           text-align: center;
           margin-bottom: 1.5rem;
           font-size: 2rem;
         }
+        .skill-descriptions {
+          margin: 0.5rem 0;
+          .skill-description {
+            display: flex;
+            flex-wrap: nowrap;
 
-        .skill-description-main {
-          &::before {
-            content: "主要技能是";
-            display: inline-block;
-            box-sizing: border-box;
-            width: 5rem;
-            margin-left: 0.5rem;
-            margin-right: 0.5rem;
-            background-color: rgb(255, 253, 233);
-            border-radius: 35%;
-          }
-        }
-        .skill-description-rest {
-          &::before {
-            content: "其餘有";
-            box-sizing: border-box;
-            width: 4rem;
-            margin-left: 0.5rem;
-            margin-right: 2.5rem;
-            background-color: rgb(255, 253, 233);
-            border-radius: 35%;
-          }
-        }
-        .skill-description-contact {
-          &::before {
-            content: "接觸過";
-            box-sizing: border-box;
-            width: 4rem;
-            margin-left: 0.5rem;
-            margin-right: 2.5rem;
-            background-color: rgb(255, 253, 233);
-            border-radius: 35%;
-          }
-        }
+            .skill-main-title {
+              flex: 1 1 200px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              h3 {
+                font-size: 1.25rem;
+                display: inline;
+                margin: 0;
 
+                padding: 0.2rem;
+                background-color: rgba(177, 255, 229, 0.8);
+                border-radius: 20px;
+              }
+            }
+            .skill-more-information {
+              flex: 1 1 400px;
+              display: flex;
+              align-items: center;
+
+              // border: 1px solid red;
+              p {
+                display: inline-block;
+                margin: 0.5rem;
+              }
+            }
+          }
+        }
         .my-skills-group {
           text-align: center;
           margin: 1rem 0;
