@@ -14,8 +14,13 @@ h6 {
 }
 
 body {
+  overflow-x: hidden;
   nav {
     background-color: white;
+    position: sticky;
+    z-index: 5;
+    width: 100%;
+    top: 0px;
     ul {
       display: flex;
       li {
@@ -172,7 +177,7 @@ body {
         img {
           width: 90%;
           position: relative;
-          z-index: 5;
+          z-index: 4;
         }
 
         div.greenRect1 {
@@ -203,6 +208,45 @@ body {
           position: absolute;
           z-index: -1;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1161px) {
+  body {
+    main {
+      section.about-me {
+        section.description {
+          width: 80%;
+        }
+      }
+      section.resume {
+        section.picture {
+          img {
+            width: 70%;
+          }
+          // div.greenRect1,
+          // div.greenRect2,
+          // div.greenRect3 {
+          //   display: none;
+          // }
+        }
+        section.table {
+          transform: scale(1.2);
+          margin: 2rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  body {
+    nav {
+      // 避免繼續占空間 黏住
+      position: static;
+      ul {
+        flex-direction: column;
       }
     }
   }
