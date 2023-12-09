@@ -119,4 +119,70 @@ body main section.about-me section.description .skill-descriptions .skill-descri
 body main section.about-me section.description .my-skills-group {
   text-align: center;
   margin: 1rem 0;
+}
+body main section.resume {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+body main section.resume section.table {
+  display: flex;
+  margin: 0 0;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex: 8 1 600px;
+}
+body main section.resume section.table table {
+  border-collapse: collapse;
+}
+body main section.resume section.table table tr {
+  --bs-table-bg: none;
+  border-bottom: 2px solid gray;
+  transition: all 0.2s ease-out;
+}
+body main section.resume section.table table tr:hover {
+  background-color: rgb(202, 248, 223);
+}
+body main section.resume section.table table td {
+  padding: 1rem;
+}
+body main section.resume section.picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2 1 500px;
+  position: relative;
+  padding: 2rem 0rem;
+}
+body main section.resume section.picture img {
+  width: 90%;
+  position: relative;
+  z-index: 5;
+}
+body main section.resume section.picture div.greenRect1 {
+  width: 30vw;
+  height: 90vh;
+  border: 10px solid rgb(202, 248, 223);
+  transform: rotate(-90deg) translate(-50%, 0);
+  position: absolute;
+  z-index: -1;
+}
+body main section.resume section.picture div.greenRect2 {
+  width: 10vw;
+  height: 120vh;
+  border: 10px solid rgb(202, 248, 223);
+  transform: rotate(-90deg) translate(10%, -30%);
+  position: absolute;
+  z-index: -1;
+}
+body main section.resume section.picture div.greenRect3 {
+  width: 10vw;
+  height: 70vh;
+  border: 10px solid rgb(202, 248, 223);
+  transform: translate(-190%, 10%);
+  position: absolute;
+  z-index: -1;
 }/*# sourceMappingURL=style.css.map */
