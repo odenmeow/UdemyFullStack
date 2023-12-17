@@ -116,7 +116,7 @@ body {
             font-size: 1.25rem;
             pointer-events: none; //允許滑鼠穿透到下面元素
             // 如果上面有人遮擋住(透明 mask)、一樣可以點垃圾桶 !
-            color: white;
+            color: red;
           }
         }
       }
@@ -151,7 +151,14 @@ body {
     }
   }
 }
-
+@keyframes scaleUp {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 @keyframes border_color {
   0% {
     border-color: red;

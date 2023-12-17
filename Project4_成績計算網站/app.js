@@ -39,7 +39,7 @@ window.addEventListener("keypress", (e) => {
 });
 
 // 防止form內部垃圾桶交出表單 (也防止所有默認按鈕行為)
-let allBtns = document.querySelectorAll("button");
+let allBtns = document.querySelectorAll("button"); //NodeList static 新增的按鈕要自己附加
 // 如果是HTMLCollection則不能forEach ， 除非透過Array.from(丟進來).forEach才能用
 allBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -180,3 +180,105 @@ function setGPA() {
 
 //  課堂之間的個人插入 ( 數字不可自己輸入否則瀏覽器會讓我超出 0-6 )
 //  寫在上面的allCredits的forEach那邊
+
+function makeSelectTag() {
+  var grades = [
+    "",
+    "A",
+    "A-",
+    "B+",
+    "B",
+    "B-",
+    "C+",
+    "C",
+    "C-",
+    "D+",
+    "D",
+    "D-",
+    "F",
+  ];
+  let newSelect;
+  newSelect = document.createElement("select");
+  newSelect.setAttribute("name", "select");
+  newSelect.classList.add("select");
+  grades.forEach((g) => {
+    var opt = document.createElement("option");
+    opt.setAttribute("value", g);
+    let textNode = document.createTextNode(g);
+    opt.appendChild(textNode);
+    newSelect.appendChild(opt);
+  });
+  return newSelect;
+}
+function makeTrashBtn() {
+  let newBtn = document.createElement("button");
+  newBtn.classList.add("trash-btn");
+  let newI = document.createElement("i");
+  newI.classList.add("fas");
+  newI.classList.add("fa-trash");
+  newBtn.append(newI);
+  return newBtn;
+}
+
+function makeInput1() {
+  let newInput1 = document.createElement("input");
+  newInput1.setAttribute("type", "text");
+  newInput1.setAttribute("list", "opt");
+  newInput1.setAttribute("placeholder", "class category");
+  newInput1.classList.add("class-type");
+  return newInput1;
+}
+function makeInput2() {
+  let newInput2 = document.createElement("input");
+  newInput2.setAttribute("type", "text");
+  newInput2.setAttribute("placeholder", "class number");
+  newInput2.classList.add("class-number");
+  return newInput2;
+}
+function makeInput3() {
+  let newInput3 = document.createElement("input");
+  newInput3.setAttribute("type", "number");
+  newInput3.setAttribute("placeholder", "credits");
+  newInput3.setAttribute("min", "0");
+  newInput3.setAttribute("max", "6");
+  newInput3.classList.add("class-credit");
+  return newInput3;
+}
+// 增加表單 的功能製作
+let addBtn = document.querySelector(".plus-btn");
+addBtn.addEventListener("click", () => {
+  let newForm = document.createElement("form");
+  let newDiv = document.createElement("div");
+  newDiv.classList.add("grader");
+
+  //製作五個小元素 包含最後選單跟垃圾桶
+  let newInput1 = makeInput1();
+  let newInput2 = makeInput2();
+  let newInput3 = makeInput3();
+  let newSelect = makeSelectTag();
+  let newBtn = makeTrashBtn();
+  newInput3.addEventListener("change", () => {
+    setGPA();
+  });
+  newSelect.addEventListener("change", (e) => {
+    setGPA();
+    changeColor(e.target);
+  });
+  newBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
+
+  newDiv.appendChild(newInput1);
+  newDiv.appendChild(document.createTextNode(" "));
+  newDiv.appendChild(newInput2);
+  newDiv.appendChild(document.createTextNode(" "));
+  newDiv.appendChild(newInput3);
+  newDiv.appendChild(document.createTextNode(" "));
+  newDiv.appendChild(newSelect);
+  newDiv.appendChild(document.createTextNode(" "));
+  newDiv.appendChild(newBtn);
+  newDiv.appendChild(document.createTextNode(" "));
+  newForm.appendChild(newDiv);
+  document.querySelector(".all-inputs").append(newForm);
+  newForm.style.animation = "scaleUp 0.5s ease forwards";
+});
