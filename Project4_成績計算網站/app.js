@@ -266,6 +266,16 @@ addBtn.addEventListener("click", () => {
   });
   newBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    e.target.parentElement.parentElement.style =
+      "animation:scaleDown 0.3s ease forwards";
+
+    e.target.parentElement.parentElement.addEventListener(
+      "animationend",
+      (e) => {
+        e.target.remove();
+        setGPA();
+      }
+    );
   });
 
   newDiv.appendChild(newInput1);
@@ -281,4 +291,16 @@ addBtn.addEventListener("click", () => {
   newForm.appendChild(newDiv);
   document.querySelector(".all-inputs").append(newForm);
   newForm.style.animation = "scaleUp 0.5s ease forwards";
+});
+
+let allTrash = document.querySelectorAll(".trash-btn");
+allTrash.forEach((trash) => {
+  trash.addEventListener("click", (e) => {
+    console.log(e.target.parentElement.parentElement.classList.add("remove"));
+  });
+  let form = trash.parentElement.parentElement;
+  form.addEventListener("transitionend", (e) => {
+    e.target.remove();
+    setGPA();
+  });
 });
