@@ -99,4 +99,76 @@ function changeColor(target) {
     target.style.color = "white";
   }
 }
-function setGPA() {}
+function convertor(grade) {
+  switch (grade) {
+    case "A":
+      return 4.0;
+    case "A-":
+      return 3.7;
+    case "B+":
+      return 3.4;
+    case "B":
+      return 3.0;
+    case "B-":
+      return 2.7;
+    case "C+":
+      return 2.4;
+    case "C":
+      return 2.0;
+    case "C-":
+      return 1.7;
+    case "D+":
+      return 1.4;
+    case "D":
+      return 1.0;
+    case "D-":
+      return 0.7;
+    case "F":
+      return 0.0;
+    default:
+      return 0;
+  }
+}
+/* 以下是我額外新增的，讓輸入的時候可以算出GPA ，而不是只有按選單才能算出*/
+let allCredits = document.querySelectorAll(".class-credit");
+allCredits.forEach((credit) => {
+  credit.addEventListener("input", (e) => {
+    setGPA();
+  });
+});
+function setGPA() {
+  let formlength = document.querySelectorAll("form").length;
+  let credits = document.querySelectorAll(".class-credit");
+  let selectedGrade = document.querySelectorAll("select");
+  let sum = 0; //分子
+  let creditSum = 0; //分母
+  for (let i = 0; i < credits.length; i++) {
+    creditSum += Number(credits[i].value); // 空字串+ "5" =string
+    // console.log("空字串number", Number("")); // 得到0 = number
+  }
+  // console.log(0 * 不輸入== credits[i].valueAsNumber == NaN ); //NaN
+  // console.log(0 * false); //0
+  // console.log(0 * ""); //0
+  // console.log(0 * null); //0
+  // console.log(0 * NaN); //NaN
+  // console.log(0 * undefined); //NaN
+
+  // console.log("-----", "" * 5 + "2", typeof ("" * 5 + "2")); //string = "02"
+  // console.log("-----", "" * 5 + 2, typeof ("" * 5 + 2));    //number  = 2
+  // console.log("-----", "" * 5, typeof ("" * 5));            //number  = 0
+
+  for (let i = 0; i < formlength; i++) {
+    // 不填入得到空字串 "" ； 填入5得到  字串 "5"
+    // console.log("valueAsNum NaN?:", isNaN(credits[i].value));
+    sum += credits[i].value * convertor(selectedGrade[i].value);
+  }
+
+  //   console.log(sum, creditSum);
+  //   console.log(sum / creditSum);
+  let gpa = document.getElementById("result-gpa");
+  if (creditSum != 0) {
+    gpa.innerText = (sum / creditSum).toFixed(2);
+  } else {
+    gpa.innerText = "0.00";
+  }
+}
