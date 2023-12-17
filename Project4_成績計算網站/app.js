@@ -133,6 +133,11 @@ function convertor(grade) {
 let allCredits = document.querySelectorAll(".class-credit");
 allCredits.forEach((credit) => {
   credit.addEventListener("input", (e) => {
+    if (e.target.value > 6) {
+      e.target.value = 6;
+    } else if (e.target.value < 0) {
+      e.target.value = 0;
+    }
     setGPA();
   });
 });
@@ -172,3 +177,6 @@ function setGPA() {
     gpa.innerText = "0.00";
   }
 }
+
+//  課堂之間的個人插入 ( 數字不可自己輸入否則瀏覽器會讓我超出 0-6 )
+//  寫在上面的allCredits的forEach那邊
