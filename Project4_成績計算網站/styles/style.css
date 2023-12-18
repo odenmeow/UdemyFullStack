@@ -111,7 +111,7 @@ body main section.main-part div.all-inputs button {
 body main section.main-part div.all-inputs button i {
   font-size: 1.25rem;
   pointer-events: none;
-  color: red;
+  color: white;
 }
 body main section.main-part button.plus-btn {
   background-color: #272727;
