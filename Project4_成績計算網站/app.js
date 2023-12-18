@@ -1,34 +1,34 @@
-// let hero = document.querySelector(".hero");
-// let slider = document.querySelector(".slider");
-// let animation = document.querySelector("section.animation-wrapper");
+let hero = document.querySelector(".hero");
+let slider = document.querySelector(".slider");
+let animation = document.querySelector("section.animation-wrapper");
 
-// const time_line = new TimelineMax();
+const time_line = new TimelineMax();
 
-// //param 1是要控制的對象
-// //param 2是duration
-// //param 3是控制對象的原始狀態
-// //param 4是控制對象的動畫結束後狀態
-// //param 5提早進場
-// time_line
-//   .fromTo(
-//     hero,
-//     1,
-//     { height: "0%" },
-//     { height: "100%", ease: Power2.easeInOut } // 套件提供的功能
-//   )
-//   .fromTo(hero, 0.8, { width: "80%" }, { width: "100%" })
-//   .fromTo(
-//     slider,
-//     1,
-//     { x: "-100%" },
-//     { x: "0%", ease: Power2.easeInOut },
-//     "-=0.8"
-//   )
-//   .fromTo(animation, 0.3, { opacity: 1 }, { opacity: 0 });
+//param 1是要控制的對象
+//param 2是duration
+//param 3是控制對象的原始狀態
+//param 4是控制對象的動畫結束後狀態
+//param 5提早進場
+time_line
+  .fromTo(
+    hero,
+    1,
+    { height: "0%" },
+    { height: "100%", ease: Power2.easeInOut } // 套件提供的功能
+  )
+  .fromTo(hero, 0.8, { width: "80%" }, { width: "100%" })
+  .fromTo(
+    slider,
+    1,
+    { x: "-100%" },
+    { x: "0%", ease: Power2.easeInOut },
+    "-=0.8"
+  )
+  .fromTo(animation, 0.3, { opacity: 1 }, { opacity: 0 });
 
-// window.setTimeout(() => {
-//   animation.style.pointerEvents = "none";
-// }, 2100);
+window.setTimeout(() => {
+  animation.style.pointerEvents = "none";
+}, 2100);
 
 /*                  以上是動畫開場                                 */
 // 避免enter直接送出表單
@@ -130,17 +130,21 @@ function convertor(grade) {
   }
 }
 /* 以下是我額外新增的，讓輸入的時候可以算出GPA ，而不是只有按選單才能算出*/
-let allCredits = document.querySelectorAll(".class-credit");
-allCredits.forEach((credit) => {
-  credit.addEventListener("input", (e) => {
-    if (e.target.value > 6) {
-      e.target.value = 6;
-    } else if (e.target.value < 0) {
-      e.target.value = 0;
-    }
-    setGPA();
+function creditInputRestrictGPA() {
+  let allCredits = document.querySelectorAll(".class-credit");
+  allCredits.forEach((credit) => {
+    credit.addEventListener("input", (e) => {
+      if (e.target.value > 6) {
+        e.target.value = 6;
+      } else if (e.target.value < 0) {
+        e.target.value = 0;
+      }
+      setGPA();
+    });
   });
-});
+}
+creditInputRestrictGPA();
+
 function setGPA() {
   let formlength = document.querySelectorAll("form").length;
   let credits = document.querySelectorAll(".class-credit");
@@ -352,7 +356,107 @@ function handleSorting(direction) {
   if (direction == "descending") {
     objectArray = objectArray.reverse();
   }
-  console.log(objectArray);
+
+  // 表單innerHTML 生成、插入數值、重新追加監聽。
+  byTeacher_MakeFormByHTML(objectArray);
+  // select監聽追加
+  ReAppendSelectionListener();
+  // credit監聽追加+數字上限追加+自動重算追加
+  ReAppendCreditListener();
+  // 垃圾桶功能重新追加、阻止垃圾桶送出表單
+  ReAppendTrashListener();
+}
+function ReAppendSelectionListener() {
+  // select監聽追加
+  let allSelects = document.querySelectorAll(".select");
+  allSelects.forEach((select) => {
+    changeColor(select);
+    select.addEventListener("change", (e) => {
+      setGPA();
+      changeColor(select);
+    });
+  });
+}
+function ReAppendCreditListener() {
+  // credit監聽追加+數字上限追加+自動重算追加
+  creditInputRestrictGPA();
+  let allCredits = document.querySelectorAll(".class-credit");
+  allCredits.forEach((credit) => {
+    credit.addEventListener("change", (e) => {
+      setGPA();
+    });
+  });
+}
+function ReAppendTrashListener() {
+  // 垃圾桶功能重新追加、阻止垃圾桶送出表單
+  let allTrash = document.querySelectorAll(".trash-btn");
+  allTrash.forEach((trash) => {
+    trash.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.target.parentElement.parentElement.style.animation =
+        "scaleDown 0.5s ease forwards";
+      e.target.parentElement.parentElement.addEventListener(
+        "animationend",
+        (e) => {
+          e.target.remove();
+          setGPA();
+        }
+      );
+    });
+  });
+}
+function byTeacher_MakeFormByHTML(objectArray) {
+  let allInputs = document.querySelector(".all-inputs");
+  allInputs.innerHTML = "";
+  for (let i = 0; i < objectArray.length; i++) {
+    allInputs.innerHTML += `<form>
+      <div class="grader">
+        <input
+          type="text"
+          class="class-type"
+          placeholder="class category"
+          list="opt"
+          value="${objectArray[i].class_name}"
+        />
+        <input
+          type="text"
+          class="class-number"
+          placeholder="class number"
+          value="${objectArray[i].class_number}"
+        />
+        <input
+          type="number"
+          class="class-credit"
+          placeholder="credits"
+          min="0"
+          max="6"
+          value="${objectArray[i].class_credit}"
+        />
+        <select name="select" class="select">
+          <option value=""></option>
+          <option value="A">A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+          <option value="C">C</option>
+          <option value="C-">C-</option>
+          <option value="D+">D+</option>
+          <option value="D">D</option>
+          <option value="D-">D-</option>
+          <option value="F">F</option>
+        </select>
+        <button class="trash-btn">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </form>`;
+  }
+  graders = document.querySelectorAll("div.grader");
+  for (let i = 0; i < graders.length; i++) {
+    graders[i].children[3].value = objectArray[i].class_grade;
+  }
 }
 
 function merge(a1, a2) {
