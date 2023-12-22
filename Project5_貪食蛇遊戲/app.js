@@ -56,6 +56,24 @@ function draw() {
     } else {
       ctx.fillStyle = "lightgreen";
     }
+
+    if (snake[i].x >= canvas.width) {
+      // exceed right boundary
+      snake[i].x = 0;
+    }
+    if (snake[i].x < 0) {
+      // exceed left boundary
+      snake[i].x = canvas.width - unit;
+    }
+    if (snake[i].y < 0) {
+      // exceed top boundary
+      snake[i].y = canvas.height - unit;
+    }
+    if (snake[i].y >= canvas.height) {
+      // exceed bottom boundary
+      snake[i].y = 0;
+    }
+
     ctx.strokeStyle = "white";
     ctx.fillRect(snake[i].x, snake[i].y, unit, unit);
     ctx.strokeRect(snake[i].x, snake[i].y, unit, unit);
