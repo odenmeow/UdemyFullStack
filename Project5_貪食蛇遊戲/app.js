@@ -29,6 +29,46 @@ snake[3] = {
   x: 20,
   y: 0,
 };
+
+class Fruit {
+  constructor() {
+    this.x = Math.floor(Math.random() * column) * unit;
+    this.y = Math.floor(Math.random() * row) * unit;
+  }
+  drawFruit() {
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(this.x, this.y, unit, unit);
+  }
+  pickLocation() {
+    let overlapping = false;
+    let new_x;
+    let new_y;
+    function checkOverlap(new_x, new_y) {
+      for (let i = 0; i < snake.length; i++) {
+        if (new_x == snake[i].x && new_y == snake[i].y) {
+          overlapping = true;
+          return;
+        } else {
+          overlapping = false;
+          // 如果沒設定 會導致重疊後被設定為true，
+          // 之後即使真的沒有重疊
+          // 也沒人幫你設定false;
+          // 他之前以為預設false就能免去後面設定false
+        }
+      }
+    }
+    do {
+      new_x = Math.floor(Math.random() * column) * unit;
+      new_y = Math.floor(Math.random() * row) * unit;
+      checkOverlap(new_x, new_y);
+      console.log("印數字");
+    } while (overlapping);
+
+    this.x = new_x;
+    this.y = new_y;
+  }
+}
+let myFruit = new Fruit();
 window.addEventListener("keydown", changeDirection);
 let d = "Right";
 function changeDirection(e) {
@@ -50,6 +90,9 @@ function draw() {
   console.log("drawing");
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  myFruit.drawFruit();
+
   for (let i = 0; i < snake.length; i++) {
     if (i) {
       ctx.fillStyle = "lightblue";
@@ -95,8 +138,15 @@ function draw() {
     x: snakeX,
     y: snakeY,
   };
-  // 如果吃到果實 unshift就好   沒吃到就 pop+unshift
-  snake.pop();
+  // 確認是否吃到果實
+  if (snake[0].x == myFruit.x && snake[0].y == myFruit.y) {
+    console.log("吃到果實了!");
+    // 更新新果實位置
+    myFruit.pickLocation();
+  } else {
+    // 如果吃到果實 unshift就好   沒吃到就 pop+unshift
+    snake.pop();
+  }
   snake.unshift(newHead);
 }
 let myGame = setInterval(draw, 100);
