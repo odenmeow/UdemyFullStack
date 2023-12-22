@@ -29,9 +29,23 @@ snake[3] = {
   x: 20,
   y: 0,
 };
-
+window.addEventListener("keydown", changeDirection);
 let d = "Right";
-
+function changeDirection(e) {
+  if (e.key == "ArrowLeft" && d != "Right") {
+    console.log("已按左鍵");
+    d = "Left";
+  } else if (e.key == "ArrowRight" && d != "Left") {
+    console.log("已按右鍵");
+    d = "Right";
+  } else if (e.key == "ArrowUp" && d != "Down") {
+    console.log("已按上鍵");
+    d = "Up";
+  } else if (e.key == "ArrowDown" && d != "Up") {
+    console.log("已按下鍵");
+    d = "Down";
+  }
+}
 function draw() {
   console.log("drawing");
   ctx.fillStyle = "black";
