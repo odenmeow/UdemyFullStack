@@ -15,6 +15,70 @@ let ySpeed = 20;
 let ground_x = 100;
 let ground_y = 500;
 let ground_height = 5;
+let brickArray = [];
+
+// min,max
+function getRandomArbitrary(min, max) {
+  return min + Math.floor(Math.random() * (max - min));
+}
+
+class Brick {
+  static brick_size = 50;
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = Brick.brick_size;
+    this.height = Brick.brick_size;
+    brickArray.push(this);
+  }
+  drawBrick() {
+    ctx.fillStyle = "lightgreen";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+}
+// 檢查是否有重疊
+function isOverlapping() {
+  if (brickArray.length < 2) {
+    console.log("還沒重疊");
+    return false;
+  }
+  let newBrick = brickArray[brickArray.length - 1];
+
+  for (let i = 0; i < brickArray.length - 1; i++) {
+    if (
+      Math.abs(brickArray[i].x - newBrick.x) <= 50 &&
+      Math.abs(brickArray[i].x - newBrick.x) >= 0 &&
+      Math.abs(brickArray[i].y - newBrick.y) <= 50 &&
+      Math.abs(brickArray[i].y - newBrick.y) >= 0
+    ) {
+      console.log("重疊了");
+      return true;
+    }
+  }
+  return false;
+}
+// 製作所有的brick
+const maxAttemp = 2000;
+let attemp = 0;
+for (let i = 0; i < 10; i++) {
+  new Brick(
+    getRandomArbitrary(0, canvasWidth - Brick.brick_size),
+    getRandomArbitrary(0, canvasHeight - Brick.brick_size)
+  );
+  if (attemp >= maxAttemp) {
+    console.log("無限迴圈避免");
+    console.log(brickArray);
+    break;
+  }
+  if (isOverlapping()) {
+    console.log("重疊了");
+    let t = brickArray.pop();
+    console.log(t);
+    i--;
+    attemp++;
+    continue;
+  }
+}
 
 // 地板控制功能 (附加到canvas身上)
 c.addEventListener("mousemove", (e) => {
@@ -60,6 +124,10 @@ function drawCircle() {
   // 畫黑色背景
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+  /***畫出所有brick，先畫避免覆蓋球***/
+  brickArray.forEach((brick) => {
+    brick.drawBrick();
+  });
   /***畫球****/
   ctx.beginPath();
   ctx.arc(circle_x, circle_y, radius, 0, 2 * Math.PI);
