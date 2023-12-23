@@ -35,6 +35,16 @@ class Brick {
     ctx.fillStyle = "lightgreen";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
+  touchingBall(ballX, ballY) {
+    // 不考慮側面撞擊，以覆蓋與否判別。
+    // 以下為 球覆蓋的情況
+    return (
+      ballX + radius >= this.x &&
+      ballX + radius <= this.x + Brick.brick_size &&
+      ballY + radius >= this.y &&
+      ballY + radius <= this.y + Brick.brick_size
+    );
+  }
 }
 // 檢查是否有重疊
 function isOverlapping() {
@@ -88,8 +98,30 @@ c.addEventListener("mousemove", (e) => {
 
 function drawCircle() {
   console.log("畫圓");
-  // 撞到地板與否?
+  // 撞到磚塊與否
+  brickArray.forEach((brick, index) => {
+    if (brick.touchingBall(circle_x, circle_y)) {
+      //改變x , y 方向速度 並移除該brick
 
+      if (circle_y >= brick.y + Brick.brick_size) {
+        // 下方往上撞
+        ySpeed *= -1;
+      } else if (circle_y <= brick.y) {
+        // 上方往下撞
+        ySpeed *= -1;
+      } else if (circle_x < brick.x) {
+        xSpeed *= -1;
+      } else if (circle_x > brick.x + Brick.brick_size) {
+        xSpeed *= -1;
+      }
+      brickArray.splice(index, 1);
+      if (brickArray.length == 0) {
+        alert("遊戲結束");
+        clearInterval(game);
+      }
+    }
+  });
+  // 撞到地板與否?
   if (
     circle_x + radius >= ground_x &&
     circle_x - radius <= ground_x + 200 &&
