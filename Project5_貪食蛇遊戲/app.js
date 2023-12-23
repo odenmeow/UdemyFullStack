@@ -13,23 +13,25 @@ let snake = []; //element=object (x,y)  for body
 // |   |   |   |   |   |   |   |   |   |   |   |
 // |   |   |   |   |   |   |   |   |   |   |   |
 // |   |   |   |   |   |   |   |   |   |   |   |
-snake[0] = {
-  x: 80,
-  y: 0,
-};
-snake[1] = {
-  x: 60,
-  y: 0,
-};
-snake[2] = {
-  x: 40,
-  y: 0,
-};
-snake[3] = {
-  x: 20,
-  y: 0,
-};
-
+function createSnake() {
+  snake[0] = {
+    x: 80,
+    y: 0,
+  };
+  snake[1] = {
+    x: 60,
+    y: 0,
+  };
+  snake[2] = {
+    x: 40,
+    y: 0,
+  };
+  snake[3] = {
+    x: 20,
+    y: 0,
+  };
+}
+createSnake();
 class Fruit {
   constructor() {
     this.x = Math.floor(Math.random() * column) * unit;
@@ -85,8 +87,22 @@ function changeDirection(e) {
     console.log("已按下鍵");
     d = "Down";
   }
+  // draw 1 d=left    d=up   d=right
+  // frame 之間差...0.1秒，但是window.addEvent很快，所以出錯!
+  // draw 2 d=right
+  // 因此要避免 Next frame 出現之前能夠連續按
+  // draw 執行完， d 才能再度改變。
+  // window.removeEventListener("keydown", changeDirection);
 }
 function draw() {
+  // 畫圖之前先確認蛇撞自己沒
+  for (let i = 1; i < snake.length; i++) {
+    if (snake[i].x == snake[0].x && snake[i].y == snake[0].y) {
+      clearInterval(myGame);
+      alert("遊戲結束");
+      return;
+    }
+  }
   console.log("drawing");
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -121,7 +137,6 @@ function draw() {
     ctx.fillRect(snake[i].x, snake[i].y, unit, unit);
     ctx.strokeRect(snake[i].x, snake[i].y, unit, unit);
   }
-
   // 以目前的d 變數方向決定蛇的下一影格
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
@@ -148,5 +163,8 @@ function draw() {
     snake.pop();
   }
   snake.unshift(newHead);
+  // 頭做好了
+  // 可以開始控制了
+  window.addEventListener("keydown", changeDirection);
 }
-let myGame = setInterval(draw, 100);
+let myGame = setInterval(draw, 1000);
