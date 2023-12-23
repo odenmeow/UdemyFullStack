@@ -73,6 +73,13 @@ class Fruit {
 let myFruit = new Fruit();
 window.addEventListener("keydown", changeDirection);
 let d = "Right";
+let score = 0;
+let highestScore;
+loadHighestScore();
+
+document.getElementById("myScore").innerHTML = "遊戲分數: " + score;
+document.getElementById("myBestScore").innerHTML = "最高分數: " + highestScore;
+
 function changeDirection(e) {
   if (e.key == "ArrowLeft" && d != "Right") {
     console.log("已按左鍵");
@@ -92,7 +99,7 @@ function changeDirection(e) {
   // draw 2 d=right
   // 因此要避免 Next frame 出現之前能夠連續按
   // draw 執行完， d 才能再度改變。
-  // window.removeEventListener("keydown", changeDirection);
+  window.removeEventListener("keydown", changeDirection);
 }
 function draw() {
   // 畫圖之前先確認蛇撞自己沒
@@ -100,6 +107,10 @@ function draw() {
     if (snake[i].x == snake[0].x && snake[i].y == snake[0].y) {
       clearInterval(myGame);
       alert("遊戲結束");
+
+      if (highestScore < score) {
+        localStorage.setItem("highestScore", score);
+      }
       return;
     }
   }
@@ -156,6 +167,9 @@ function draw() {
   // 確認是否吃到果實
   if (snake[0].x == myFruit.x && snake[0].y == myFruit.y) {
     console.log("吃到果實了!");
+    score++;
+    document.getElementById("myScore").innerHTML = "遊戲分數: " + score;
+
     // 更新新果實位置
     myFruit.pickLocation();
   } else {
@@ -167,4 +181,12 @@ function draw() {
   // 可以開始控制了
   window.addEventListener("keydown", changeDirection);
 }
-let myGame = setInterval(draw, 1000);
+
+function loadHighestScore() {
+  if (localStorage.getItem("highestScore")) {
+    highestScore = Number(localStorage.getItem("highestScore"));
+  } else {
+    highestScore = 0;
+  }
+}
+let myGame = setInterval(draw, 100);
