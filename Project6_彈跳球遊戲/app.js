@@ -16,7 +16,7 @@ let ground_x = 100;
 let ground_y = 500;
 let ground_height = 5;
 let brickArray = [];
-
+let count = 0;
 // min,max
 function getRandomArbitrary(min, max) {
   return min + Math.floor(Math.random() * (max - min));
@@ -27,6 +27,7 @@ class Brick {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.visible = true;
     this.width = Brick.brick_size;
     this.height = Brick.brick_size;
     brickArray.push(this);
@@ -100,9 +101,12 @@ function drawCircle() {
   console.log("畫圓");
   // 撞到磚塊與否
   brickArray.forEach((brick, index) => {
-    if (brick.touchingBall(circle_x, circle_y)) {
+    if (brick.visible && brick.touchingBall(circle_x, circle_y)) {
       //改變x , y 方向速度 並移除該brick
+      count++;
+      brick.visible = false;
 
+      console.log(count);
       if (circle_y >= brick.y + Brick.brick_size) {
         // 下方往上撞
         ySpeed *= -1;
@@ -114,8 +118,9 @@ function drawCircle() {
       } else if (circle_x > brick.x + Brick.brick_size) {
         xSpeed *= -1;
       }
-      brickArray.splice(index, 1);
-      if (brickArray.length == 0) {
+      //   brickArray.splice(index, 1);
+      // 改寫 visible
+      if (count == 10) {
         alert("遊戲結束");
         clearInterval(game);
       }
@@ -158,7 +163,9 @@ function drawCircle() {
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   /***畫出所有brick，先畫避免覆蓋球***/
   brickArray.forEach((brick) => {
-    brick.drawBrick();
+    if (brick.visible) {
+      brick.drawBrick();
+    }
   });
   /***畫球****/
   ctx.beginPath();
