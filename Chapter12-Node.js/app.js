@@ -1,29 +1,47 @@
-// fs (file system)
-
+const http = require("http");
 const fs = require("fs");
-const path = require("path");
-let myfilePath = path.join(__dirname + "/myFile.txt");
-myfilePath = "C" + myfilePath.substring(1); //0不需要，從1開始擷取
+let myfilePath = "C" + __dirname.substring(1); //0不需要，從1開始擷取
 
-// console.log(__dirname);
-// console.log(__filename);
-// c:\CodeSForGit\2023WebFullStack\Chapter12-Node.js
+// request obj  ,  response obj
+const server = http.createServer((req, res) => {
+  //   console.log(req.headers);
+  res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+  //   res.write("歡迎來到我的網頁");
+  //   res.end();
+  //   console.log(req.url); // 請求的url是什麼
 
-// fs.writeFile(myfilePath, "今天很冷", (e) => {
-//   if (e) {
-//     throw e;
-//   }
-//   console.log("文件成功撰寫完畢");
-// });
-/*********    如果檔案存在              ************** */
-fs.readFile(myfilePath, "utf8", (e, data) => {
-  if (e) throw e;
-  console.log(data);
-});
-/*********    如果檔案不存在              ************** */
-fs.readFile("myfilePath", "utf8", (e, data) => {
-  if (e) {
-    console.log(e);
+  if (req.url == "/") {
+    res.write("歡迎來到我的網頁");
+    res.end();
+    // 如果沒有這個會導致轉圈圈的問題，瀏覽器收不到回應完成的訊號
+    // 必須一個一個增加，因為asynchronous 會導致可能先end() 結果還沒送出檔案
+  } else if (req.url == "/anotherPage") {
+    res.write("歡迎來到另一個頁面");
+    res.end();
+    // 如果沒有這個會導致轉圈圈的問題，瀏覽器收不到回應完成的訊號
+    // 必須一個一個增加，因為asynchronous 會導致可能先end() 結果還沒送出檔案
+  } else if (req.url == "/myFile") {
+    fs.readFile(myfilePath + "/myFile.html", (e, data) => {
+      if (e) {
+        res.write("存取html文件出錯");
+        res.end();
+        // 如果沒有這個會導致轉圈圈的問題，瀏覽器收不到回應完成的訊號
+        // 必須一個一個增加，因為asynchronous 會導致可能先end() 結果還沒送出檔案
+      } else {
+        res.write(data);
+        res.end();
+        // 如果沒有這個會導致轉圈圈的問題，瀏覽器收不到回應完成的訊號
+        // 必須一個一個增加，因為asynchronous 會導致可能先end() 結果還沒送出檔案
+      }
+    });
+  } else {
+    res.write("不存在這頁面");
+    res.end();
+    // 如果沒有這個會導致轉圈圈的問題，瀏覽器收不到回應完成的訊號
+    // 必須一個一個增加，因為asynchronous 會導致可能先end() 結果還沒送出檔案
   }
-  console.log(data); //undefined
+});
+
+server.listen(3000, () => {
+  console.log("正在3000運行中");
 });
