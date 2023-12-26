@@ -5,6 +5,15 @@ const app = express(); //回傳一個物件過來
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// 實際使用
+app.use((req, res, next) => {
+  console.log("正在經過middleware");
+  next();
+});
+app.use((req, res, next) => {
+  console.log("正在經過第二個middleware");
+  next();
+});
 // HTTP request GET  POST PUT DELETE
 
 app.get("/", (req, res) => {
