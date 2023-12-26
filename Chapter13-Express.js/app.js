@@ -14,11 +14,18 @@ app.use((req, res, next) => {
   console.log("正在經過第二個middleware");
   next();
 });
-// HTTP request GET  POST PUT DELETE
+// static file示範 253
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.send("歡迎來到首頁");
+  res.sendFile(__dirname + "/index.html");
 });
+
+// HTTP request GET  POST PUT DELETE
+
+// app.get("/", (req, res) => {
+//   res.send("歡迎來到首頁");
+// });
 
 app.get("/anotherPage", (req, res) => {
   res.send("這是另一個頁面");
