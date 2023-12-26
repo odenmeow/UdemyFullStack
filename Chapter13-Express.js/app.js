@@ -77,7 +77,9 @@ app.post("/formhandling", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  console.log(res.send("你所找的頁面不存在"));
+  // res.status(404); // return res object , method chain
+  // res.send("你所找的頁面不存在");
+  res.status(404).send("你所找的頁面不存在");
 });
 
 // port callback
