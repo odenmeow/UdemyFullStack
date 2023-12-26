@@ -9,8 +9,9 @@ app.set("view engine", "ejs");
 
 app.get("/:name", (req, res) => {
   //   res.send("歡迎來到首頁");
-  let { name } = req.params;
+  // let { name } = req.params;
   // k v 相同的狀況 可以直接寫 name就好
+  let name = "<p>oni world</p>";
   res.render("index", { name });
   console.log(req.params.name);
 });
