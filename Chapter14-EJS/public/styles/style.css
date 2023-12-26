@@ -1,4 +1,18 @@
 body {
   background-color: black;
   color: white;
+}
+
+table,
+tr,
+th,
+td {
+  border-collapse: collapse;
+  border: 2px solid white;
+  text-align: center;
+}
+
+th,
+td {
+  padding: 0.25rem;
 }/*# sourceMappingURL=style.css.map */

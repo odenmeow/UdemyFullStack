@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <%for(let i=0;i<10;i++){%> <%-name ;%> <%}%> <%-include("partials/footer")%>
+    <!-- <form action="/example" method="GET">
+      <label for="name">名稱: </label>
+      <input type="text" id="name" name="name" />
+      <label for="age">年齡: </label>
+      <input type="number" name="age" id="age" />
+      <button>送出表單</button>
+    </form> -->
+    <table>
+      <tr>
+        <th>名稱</th>
+        <th>評價</th>
+        <th>熱門程度</th>
+        <th>流行度</th>
+      </tr>
+      <%languagesRes.forEach(lang=>{ %>
+      <tr>
+        <td><%=lang.name%></td>
+        <td><%=lang.rating%></td>
+        <td><%=lang.popularity%></td>
+        <td><%=lang.trending%></td>
+      </tr>
+      <%})%>
+    </table>
   </body>
 </html>
