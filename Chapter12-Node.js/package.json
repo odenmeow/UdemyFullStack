@@ -1,0 +1,14 @@
+{
+  "name": "chapter12-node",
+  "version": "1.0.0",
+  "description": "This is a simple node folder !",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cowsay": "^1.5.0"
+  }
+}
