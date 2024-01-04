@@ -16,7 +16,8 @@ mongoose
 const studentSchema = new Schema({
   name: String,
   // name:{type:String}  也可以
-  age: Number,
+  // age: Number,
+  age: { type: Number, min: [0, "年齡不能小於0"] },
   major: String,
   scholarship: {
     merit: Number,
@@ -58,14 +59,61 @@ const Student = mongoose.model("Student", studentSchema);
 
 app.get("/", async (req, res) => {
   try {
-    // let data = await Student.find().exec();
-    let data = await Student.findOne({ name: "UmiOOO" }).exec();
+    let data = await Student.find().exec();
+    // let data = await Student.findOne({ name: "UmiOOO" }).exec();
     //會直接得到 或者透過try catch拋出錯誤
     res.send(data);
   } catch (e) {
     console.log(e);
   }
 });
+// Student.updateOne(
+//   { name: "UmiOOO" },
+//   { age: 15 },
+//   { runValidators: true, new: true }
+// )
+//   .exec()
+//   .then((msg) => {
+//     console.log("成功改變");
+//     console.log(msg);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+// Student.find()
+//   .exec()
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+/*             測試如果update會忽略schema new的話呢?                    */
+// let newStudent = new Student({
+//   name: "Oni",
+//   age: -10,
+//   major: "CS",
+//   scholarship: {
+//     merit: 10,
+//     other: 0,
+//   },
+// });
+// newStudent.save().then((data) => {
+//   console.log(data);
+// });
+
+Student.findOneAndUpdate(
+  { name: "Oni" },
+  { age: 255 },
+  { runValidators: true, new: true } //得到的then data 會是更新完成的資料
+)
+  .then((data) => {
+    console.log("找到並且更新了");
+    console.log(data);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 
 app.listen(3000, () => {
   console.log("正在聽port 3000");
