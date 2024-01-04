@@ -26,26 +26,46 @@ const studentSchema = new Schema({
 
 const Student = mongoose.model("Student", studentSchema);
 
-const newObject = new Student({
-  name: "UmiOOO",
-  age: 17,
-  major: "Mathematics",
-  scholarship: {
-    merit: 1000,
-    other: 2000,
-  },
-});
-console.log("儲存之前");
-console.log(newObject); //建立的時候就已經有id了
-newObject
-  .save()
-  .then((savedObject) => {
-    console.log("資料成功儲存");
-    console.log(savedObject);
-  })
-  .catch((e) => {
+// const newObject = new Student({
+//   name: "UmiOOO",
+//   age: 17,
+//   major: "Mathematics",
+//   scholarship: {
+//     merit: 1000,
+//     other: 2000,
+//   },
+// });
+// console.log("儲存之前");
+// console.log(newObject); //建立的時候就已經有id了
+// newObject
+//   .save()
+//   .then((savedObject) => {
+//     console.log("資料成功儲存");
+//     console.log(savedObject);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+/***比較弱的作法 */
+// Student.find()
+//   .exec()
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+
+app.get("/", async (req, res) => {
+  try {
+    // let data = await Student.find().exec();
+    let data = await Student.findOne({ name: "UmiOOO" }).exec();
+    //會直接得到 或者透過try catch拋出錯誤
+    res.send(data);
+  } catch (e) {
     console.log(e);
-  });
+  }
+});
 
 app.listen(3000, () => {
   console.log("正在聽port 3000");
