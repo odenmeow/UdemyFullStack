@@ -14,19 +14,55 @@ mongoose
   });
 
 const studentSchema = new Schema({
-  name: String,
+  // name: String,
   // name:{type:String}  也可以
   // age: Number,
+  name: { type: String, required: true, maxlength: 20 },
   age: { type: Number, min: [0, "年齡不能小於0"] },
-  major: String,
+  // major: String,
+  major: {
+    type: String,
+    required: function () {
+      // console.log(this);
+      // console.log("印出來了在上面");
+      // console.log("==========");
+      // console.log(this.scholarship);
+      // console.log("==========");
+      return this.scholarship.merit >= 3000;
+    },
+    enum: [
+      "Chemistry",
+      "Computer Science",
+      "Mathematics",
+      "Civil Engineering",
+      "undecided",
+    ],
+  },
   scholarship: {
-    merit: Number,
-    other: Number,
+    // merit: Number,
+    // other: Number,
+    merit: { type: Number, default: 0 },
+    other: { type: Number, default: 0 },
   },
 });
-
 const Student = mongoose.model("Student", studentSchema);
-
+// let newStudent = new Student({
+//   name: "Ani",
+//   age: 25,
+//   scholarship: {
+//     merit: 3000,
+//     other: 10,
+//   },
+// });
+// newStudent
+//   .save()
+//   .then((data) => {
+//     console.log("資料儲存成功");
+//     console.log(data);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
 // const newObject = new Student({
 //   name: "UmiOOO",
 //   age: 17,
@@ -67,6 +103,23 @@ app.get("/", async (req, res) => {
     console.log(e);
   }
 });
+// let newStudent = new Student({
+//   name: "Jaredaaaaa",
+//   age: 40,
+//   major: "Civil Engineering", //用Nuclear 這麼沒登記過enum會被阻擋
+//   scholarship: {
+//     merit: 3000,
+//     other: 100,
+//   },
+// });
+// newStudent
+//   .save()
+//   .then((data) => {
+//     console.log("成功保存", data);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
 // Student.updateOne(
 //   { name: "UmiOOO" },
 //   { age: 15 },
@@ -121,14 +174,28 @@ app.get("/", async (req, res) => {
 //   })
 //   .catch((e) => console.log(e));
 
-Student.deleteMany({ name: "UmiOOO" })
-  .exec()
-  .then((msg) => {
-    console.log(msg);
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+// Student.deleteMany({ major: { $nin: ["Mathematics", "Computer Science"] } })
+//   .exec()
+//   .then((msg) => {
+//     console.log(msg);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+
+// Student.updateMany(
+//   { major: "Computer Science" },
+//   { scholarship:{merit:500} },  沒有預設other的話會直接變成other消失!!!
+//   { runValidators: false, new: true }
+// )
+//   .exec()
+//   .then((msg) => {
+//     console.log("成功改變");
+//     console.log(msg);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
 
 app.listen(3000, () => {
   console.log("正在聽port 3000");
