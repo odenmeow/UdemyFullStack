@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const fs = require("fs");
 app.set("view engine", "ejs");
 // 會回傳成功或失敗 (promise)
 mongoose
@@ -72,9 +73,33 @@ studentSchema.static("findAllMajorStudents", function (major) {
       console.log(e);
     });
 });
+
+studentSchema.pre("save", () => {
+  fs.writeFile("record.txt", "A new data will be saved", (e) => {
+    if (e) throw e;
+  });
+});
+
 const Student = mongoose.model("Student", studentSchema);
 Student.findAllMajorStudents("Computer Science");
 
+let newStudent = new Student({
+  name: "Umimi",
+  age: 16,
+  major: "Computer Science",
+  scholarship: {
+    merit: 3333,
+    other: 1111,
+  },
+});
+newStudent
+  .save()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 // Student.find({})
 //   .exec()
 //   .then((arr) => {
