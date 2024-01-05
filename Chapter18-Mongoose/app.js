@@ -102,14 +102,29 @@ app.get("/", async (req, res) => {
 //   console.log(data);
 // });
 
-Student.findOneAndUpdate(
-  { name: "Oni" },
-  { age: 255 },
-  { runValidators: true, new: true } //得到的then data 會是更新完成的資料
-)
-  .then((data) => {
-    console.log("找到並且更新了");
-    console.log(data);
+// Student.findOneAndUpdate(
+//   { name: "Oni" },
+//   { age: 255 },
+//   { runValidators: true, new: true } //得到的then data 會是更新完成的資料
+// )
+//   .then((data) => {
+//     console.log("找到並且更新了");
+//     console.log(data);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+
+// Student.find({ "scholarship.merit": { $gte: 3500 } }).exec()
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((e) => console.log(e));
+
+Student.deleteMany({ name: "UmiOOO" })
+  .exec()
+  .then((msg) => {
+    console.log(msg);
   })
   .catch((e) => {
     console.log(e);
