@@ -45,7 +45,47 @@ const studentSchema = new Schema({
     other: { type: Number, default: 0 },
   },
 });
+studentSchema.methods.printTotalScholarship = function () {
+  return this.scholarship.merit + this.scholarship.other;
+};
+studentSchema.statics.findAllMajorStudents = function (major) {
+  // console.log(this);
+  this.find({ major: major })
+    .exec()
+    .then((data) => {
+      console.log("執行中");
+      console.log(data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+studentSchema.static("findAllMajorStudents", function (major) {
+  // console.log(this);
+  this.find({ major: major })
+    .exec()
+    .then((data) => {
+      console.log("執行中");
+      console.log(data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+});
 const Student = mongoose.model("Student", studentSchema);
+Student.findAllMajorStudents("Computer Science");
+
+// Student.find({})
+//   .exec()
+//   .then((arr) => {
+//     arr.forEach((data) => {
+//       console.log(data.printTotalScholarship());
+//     });
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+
 // let newStudent = new Student({
 //   name: "Ani",
 //   age: 25,
