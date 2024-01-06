@@ -1,0 +1,7 @@
+# 一樣有忽略 node module 
+
+自己安裝以下 
+
+npm init 
+npm install express ejs mongoose
+
