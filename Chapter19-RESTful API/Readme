@@ -3,5 +3,20 @@
 自己安裝以下 
 
 npm init 
-npm install express ejs mongoose
+npm install express ejs 
+npm install mongoose@6.6.5   
+不要用8.0.3 或其他 有點出入
+總結: 6.6.5
+勾name不填值:  一定報錯
+不勾name ，且overwrite:true  會報錯。
+不勾name ，且overwrite:false 不報錯誤。
 
+總結:  8.0.3
+勾name不填值 : 一定報錯 
+不勾name ，都沒事 ，( true false都無所謂 )
+
+兩者差別在於8.0.3的PUT 功能 update overwrite ture壞掉或消失然後不會報錯。
+
+
+
+test.js蠻重要的 ，也可讀一下

@@ -4,7 +4,7 @@ const { Schema } = mongoose; //從mongoose解構
 const studentSchema = new Schema({
   name: {
     type: String,
-    require: true,
+    required: true, // update 不會被管，save才會
     minlength: 2,
   },
   age: {
