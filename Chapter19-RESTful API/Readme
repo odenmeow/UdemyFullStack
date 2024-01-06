@@ -5,6 +5,7 @@
 npm init 
 npm install express ejs 
 npm install mongoose@6.6.5   
+npm install cors  同源問題 
 不要用8.0.3 或其他 有點出入
 總結: 6.6.5
 勾name不填值:  一定報錯
