@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const Student = require("./models/student");
 
 app.set("view engine", "ejs");
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 mongoose
   .connect("mongodb://127.0.0.1:27017/exampleDB")
   .then(() => {
@@ -34,6 +35,26 @@ app.get("/students/:_id", async (req, res) => {
     return res
       .status(500)
       .send("尋找資料時發生錯誤" + "\n" + e.message + "\n" + e.reason);
+  }
+});
+
+app.post("/students", async (req, res) => {
+  try {
+    let { name, age, major, merit, other } = req.body;
+    //   console.log(name, age, major, merit, other);
+    let newStudent = new Student({
+      name,
+      age,
+      major,
+      scholarship: {
+        merit,
+        other,
+      },
+    });
+    let result = await newStudent.save();
+    return res.send({ msg: "資料儲存成功", result });
+  } catch (e) {
+    return res.status(500).send("儲存發生錯誤" + e.message);
   }
 });
 

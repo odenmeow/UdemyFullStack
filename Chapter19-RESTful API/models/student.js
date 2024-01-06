@@ -11,7 +11,9 @@ const studentSchema = new Schema({
     type: Number,
     default: 18,
     max: [80, "有點太老了..."],
+    min: [0, "太小了0已經夠扯了"],
   },
+  major: String,
   scholarship: {
     merit: {
       type: Number,
