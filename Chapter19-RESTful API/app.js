@@ -19,7 +19,8 @@ mongoose
 app.get("/students", async (req, res) => {
   try {
     let studentData = await Student.find({}).exec();
-    return res.send(studentData);
+    // return res.send(studentData);
+    return res.render("students", { studentData });
   } catch (e) {
     // console.log(e); //只有伺服器看得到的錯誤不好
     return res.status(500).send("尋找資料時發生錯誤"); //內部錯誤=500
@@ -29,13 +30,33 @@ app.get("/students/:_id", async (req, res) => {
   try {
     let { _id } = req.params;
     let studentData = await Student.find({ _id }).exec();
-    return res.send(studentData);
+    // 因為我用find會回傳arr  他原本是用findOne
+
+    /** Mongoose避免我們直接改原始數據 因此用 ._doc保護 */
+    // let properties = Object.getOwnPropertyNames(studentData[0]._doc);
+    // console.log(properties);
+    // properties.forEach((e) => {
+    //   console.log(e);
+    // });
+    /** 可以將物件透過.toJSON 抽離，那就不需要透過上面那招了 */
+    // let obj = studentData[0].toJSON();
+    // for (let i in obj) {
+    //   console.log(i);
+    // }
+    if (studentData.length > 0)
+      return res.render("students-page", { studentData });
+    else {
+      return res.render("student-not-found", { _id });
+    }
   } catch (e) {
     console.log(e);
     console.log("資料型態為", typeof e);
-    return res
-      .status(500)
-      .send("尋找資料時發生錯誤" + "\n" + e.message + "\n" + e.reason);
+    return (
+      res
+        .status(400)
+        // .send("尋找資料時發生錯誤" + "\n" + e.message + "\n" + e.reason);
+        .render("error", { e })
+    );
   }
 });
 
@@ -118,6 +139,10 @@ app.delete("/students/:_id", async (req, res) => {
   } catch (e) {
     return res.status(400).send(e.message);
   }
+});
+
+app.get("/", (req, res) => {
+  return res.redirect("/students");
 });
 app.listen(3000, () => {
   console.log("伺服器聆聽中");

@@ -16,3 +16,10 @@ n.setProperty("name", "umi");
 n.setProperty("age", 10);
 n.setProperty("merit", 1000);
 console.log(n);
+console.log("------物件沒有forEach唷-----");
+for (let k in n) {
+  console.log(k);
+  console.log(n[k]);
+}
+
+console.log(Object.keys(n));
