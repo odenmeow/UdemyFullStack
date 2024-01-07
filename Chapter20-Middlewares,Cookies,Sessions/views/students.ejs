@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>student</title>
+    <meta name="author" content="Onini" />
+    <style>
+      a {
+        text-decoration: none;
+      }
+      h1 {
+        position: fixed;
+        left: 50%;
+        top: 5%;
+        transform: translate(-50%);
+      }
+      h2 {
+        position: fixed;
+        left: 50%;
+        top: 15%;
+        transform: translate(-50%);
+      }
+      ul {
+        position: fixed;
+        left: 50%;
+        top: 25%;
+        transform: translate(-50%);
+      }
+      li {
+        /* text-decoration: none; */
+        /* text-decoration-style: none; */
+        list-style-type: none;
+        margin: 0.5rem;
+      }
+      li a {
+        text-decoration: none;
+        /* 拿掉底線 */
+        margin-right: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>學生首頁</h1>
+    <h2>
+      <button><a href="/students/new">新增資料</a></button>
+    </h2>
+    <ul>
+      <% studentData.forEach(student => { %>
+      <li>
+        <a href="students/<%=student._id%>/edit">修改</a>
+        <a href="students/<%=student._id%>"><%=student.name%></a>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

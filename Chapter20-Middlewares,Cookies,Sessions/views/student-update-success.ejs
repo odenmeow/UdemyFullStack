@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=result.name%>的頁面</title>
+    <meta name="author" content="Onini" />
+    <style>
+      h1 {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, 0%);
+      }
+      h2 {
+        position: fixed;
+        left: 50%;
+        top: 10%;
+        transform: translate(-50%, 0%);
+      }
+      tr,
+      td,
+      table {
+        border-collapse: collapse;
+        border: 2px black solid;
+        padding: 1rem;
+      }
+      table {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -70%);
+      }
+      a {
+        position: absolute;
+        left: 50%;
+        bottom: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>學生個資</h1>
+    <h2>更新成功!</h2>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>編號</td>
+          <td><%=result._id%></td>
+        </tr>
+        <tr>
+          <td>名稱</td>
+          <td><%=result.name%></td>
+        </tr>
+        <tr>
+          <td>年齡</td>
+          <td><%=result.age%></td>
+        </tr>
+        <tr>
+          <td>主修</td>
+          <td><%=result.major%></td>
+        </tr>
+        <tr>
+          <td>merit</td>
+          <td><%=result.scholarship.merit%></td>
+        </tr>
+        <tr>
+          <td>other</td>
+          <td><%=result.scholarship.other%></td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/students">回首頁</a>
+  </body>
+</html>
