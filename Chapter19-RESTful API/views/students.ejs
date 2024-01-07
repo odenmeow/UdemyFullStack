@@ -27,6 +27,7 @@
       li a {
         text-decoration: none;
         /* 拿掉底線 */
+        margin-right: 2rem;
       }
     </style>
   </head>
@@ -35,6 +36,7 @@
     <ul>
       <% studentData.forEach(student => { %>
       <li>
+        <a href="students/<%=student._id%>/edit">修改</a>
         <a href="students/<%=student._id%>"><%=student.name%></a>
       </li>
       <% }); %>

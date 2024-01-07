@@ -3,10 +3,12 @@ const app = express();
 const mongoose = require("mongoose");
 const Student = require("./models/student");
 const cors = require("cors");
+const methodOverride = require("method-override");
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(methodOverride("_method"));
 mongoose
   .connect("mongodb://127.0.0.1:27017/exampleDB")
   .then(() => {
@@ -63,7 +65,20 @@ app.get("/students/:_id", async (req, res) => {
     );
   }
 });
-
+app.get("/students/:_id/edit", async (req, res) => {
+  try {
+    //這次玩findOne 就不會arr[0]
+    let { _id } = req.params;
+    let data = await Student.findOne({ _id }).exec();
+    if (data != null) {
+      return res.render("student-edit", { data });
+    } else {
+      return res.render("student-not-found", { _id });
+    }
+  } catch (e) {
+    return res.render("error", { e });
+  }
+});
 app.post("/students", async (req, res) => {
   try {
     let { name, age, major, merit, other } = req.body;
@@ -131,9 +146,15 @@ app.patch("/students/:_id", async (req, res) => {
       //   overwrite: true, // 版本8.0.3 的話 無所謂
       overwrite: false, //如果版本是 6.6.5要小心 如果依舊true會形同PUT 覆蓋大家
     });
-    return res.send({ msg: "成功更新學生資料", updatedData: result });
+    // return res.send({ msg: "成功更新學生資料", updatedData: result });
+    if (result != null) {
+      return res.render("student-update-success", { result });
+    } else {
+      return res.render("student-not-found", { _id });
+    }
   } catch (e) {
-    return res.status(500).send(e.message);
+    // return res.status(500).send(e.message);
+    return res.status(500).render("error", { e });
   }
 });
 
