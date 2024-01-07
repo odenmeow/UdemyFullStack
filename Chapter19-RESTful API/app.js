@@ -26,6 +26,10 @@ app.get("/students", async (req, res) => {
     return res.status(500).send("尋找資料時發生錯誤"); //內部錯誤=500
   }
 });
+// 建立for 網頁new student 必須在:id 的router之前
+app.get("/students/new", async (req, res) => {
+  return res.render("student-new");
+});
 app.get("/students/:_id", async (req, res) => {
   try {
     let { _id } = req.params;
@@ -74,9 +78,11 @@ app.post("/students", async (req, res) => {
       },
     });
     let result = await newStudent.save();
-    return res.send({ msg: "資料儲存成功", result });
+    // return res.send({ msg: "資料儲存成功", result });
+    return res.render("sucessInsert", { result });
   } catch (e) {
-    return res.status(500).send("儲存發生錯誤" + e.message);
+    // return res.status(500).send("儲存發生錯誤" + e.message);
+    return res.status(500).render("error", { e });
   }
 });
 
