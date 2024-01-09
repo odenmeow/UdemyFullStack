@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <meta name="author" content="Onini" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/styleEdit.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav nav-pills flex-column flex-sm-row">
+        <a
+          class="flex-sm-fill text-sm-center nav-link"
+          aria-current="page"
+          href="./index"
+          >工作區</a
+        >
+        <a class="flex-sm-fill text-sm-center nav-link" href="#">歷史紀錄</a>
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#"
+          >功能編輯</a
+        >
+        <a
+          class="flex-sm-fill text-sm-center nav-link disabled"
+          aria-disabled="true"
+          href="#"
+          >會員專區</a
+        >
+      </nav>
+    </header>
+    <main>
+      <!-- Modal  ADD Product -->
+      <div
+        class="modal fade"
+        id="Modal-add-product"
+        tabindex="-1"
+        aria-labelledby="Modal-add-productLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="Modal-add-productLabel">
+                新增商品
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form action="" id="yoichi-product-add">
+                <label for="yoichi-p-add-setName">產品名稱</label>
+                <input
+                  type="text"
+                  id="yoichi-p-add-setName"
+                  name="yoichi-p-add-setName"
+                />
+                <label for="yoichi-p-add-setPrice">售價</label>
+                <input
+                  type="text"
+                  id="yoichi-p-add-setPrice"
+                  name="yoichi-p-add-setPrice"
+                />
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                取消
+              </button>
+              <button
+                id="yoichi-p-addSave"
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                保存
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal  ADD Product -->
+      <!-- Modal  Edit Product -->
+      <div
+        class="modal fade"
+        id="Modal-edit-product"
+        tabindex="-1"
+        aria-labelledby="Modal-edit-productLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="Modal-edit-productLabel">
+                編輯商品
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form action="" id="yoichi-product-edit">
+                <label for="yoichi-p-edit-setName">商品名稱</label>
+                <input
+                  type="text"
+                  id="yoichi-p-edit-setName"
+                  name="yoichi-p-edit-setName"
+                />
+                <label for="yoichi-p-edit-setPrice">售價</label>
+                <input
+                  type="text"
+                  id="yoichi-p-edit-setPrice"
+                  name="yoichi-p-edit-setPrice"
+                />
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+                id="yoichi-p-delete"
+              >
+                刪除
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                取消
+              </button>
+              <button
+                id="yoichi-p-editSave"
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                保存
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal  Edit Product -->
+      <!-- 以上為平時看不見的Modal -->
+      <section class="show-products">
+        <div class="yoichi-p-shows">
+          <div class="yoichi-p-show-name">產品名稱</div>
+          <div class="yoichi-p-show-price">價格</div>
+          <div class="yoichi-p-show-edit-title"></div>
+        </div>
+        <!-- <div class="yoichi-p-shows">
+          <div class="yoichi-p-show-name"><p>香腸</p></div>
+          <div class="yoichi-p-show-price"><p>40元</p></div>
+          <button
+            type="button"
+            class="yoichi-p-show-edit btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#Modal-edit-product"
+          >
+            編輯
+          </button>
+        </div>
+        <div class="yoichi-p-shows">
+          <div class="yoichi-p-show-name"><p>蔥肉串</p></div>
+          <div class="yoichi-p-show-price"><p>35元</p></div>
+          <button
+            type="button"
+            class="yoichi-p-show-edit btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#Modal-edit-product"
+          >
+            編輯
+          </button>
+        </div> -->
+      </section>
+    </main>
+    <aside class="floating-element">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#Modal-add-product"
+      >
+        +
+      </button>
+    </aside>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./edit.js"></script>
+  </body>
+</html>

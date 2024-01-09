@@ -1,0 +1,105 @@
+#background-wrap {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.bubble {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2),
+    inset 0px 10px 30px 5px rgba(252, 255, 255, 1);
+}
+
+@keyframes animateBubble {
+  0% {
+    margin-top: 1000px;
+  }
+  100% {
+    margin-top: -100%;
+  }
+}
+@keyframes sideWays {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+.x1 {
+  animation: animateBubble 25s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 5%;
+  top: 0;
+  transform: scale(0.5);
+}
+.x2 {
+  animation: animateBubble 15s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 15%;
+  top: 0;
+  transform: scale(0.8);
+}
+.x3 {
+  animation: animateBubble 19s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 25%;
+  top: 0;
+  transform: scale(1.2);
+}
+.x4 {
+  animation: animateBubble 23s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 35%;
+  top: 0;
+  transform: scale(0.6);
+}
+.x5 {
+  animation: animateBubble 16s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 55%;
+  top: 0;
+  transform: scale(0.7);
+}
+.x6 {
+  animation: animateBubble 15s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 0%;
+  top: 0;
+  transform: scale(0.2);
+}
+.x7 {
+  animation: animateBubble 22s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 90%;
+  top: 0;
+  transform: scale(0.9);
+}
+.x8 {
+  animation: animateBubble 19s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 85%;
+  top: 0;
+  transform: scale(0.5);
+}
+.x9 {
+  animation: animateBubble 17s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 65%;
+  top: 0;
+  transform: scale(0.4);
+}
+.x10 {
+  animation: animateBubble 15s linear infinite,
+    sideWays 2s ease-in-out infinite alternate;
+  left: 45%;
+  top: 0;
+  transform: scale(1.1);
+}

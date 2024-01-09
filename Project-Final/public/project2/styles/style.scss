@@ -1,0 +1,264 @@
+$themeColor: rgba(152, 57, 255, 0.5);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+body {
+  position: relative;
+  img.fixed-img {
+    min-height: 100vh;
+    position: fixed;
+    width: 100%;
+    z-index: -10;
+    bottom: 0;
+    left: 0;
+  }
+  header {
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    box-shadow: 0 10px 6px -6px #777;
+    section.logo {
+      flex: 2 1 400px;
+      display: flex;
+      align-items: center;
+      // border: 2px solid orange;
+      h1 {
+        font-size: 2.5rem;
+      }
+      img {
+        width: 6vw;
+        height: 6vw;
+      }
+    }
+    nav {
+      flex: 5 1 500px;
+
+      // border: 2px solid orange;
+      ul {
+        display: flex;
+
+        flex-wrap: wrap;
+        list-style-type: none;
+
+        justify-content: space-around;
+        li {
+          margin: 0 1rem;
+          a {
+            color: black;
+            text-decoration: none;
+            font-size: 1.35rem;
+            transition: all 0.2s ease;
+            padding-bottom: 0.3rem;
+            &:hover {
+              color: $themeColor;
+              // text-decoration: underline;
+              border-bottom: 3px solid $themeColor;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    section.background-img {
+      //設定背景圖片
+      min-height: 70vh;
+      background-image: url(../images/日本櫻花.jpg);
+      background-size: cover;
+      background-position: center;
+      transition: all 1.5s ease;
+      position: relative;
+      z-index: 0; //relative+index非auto => 形成stacking context
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      div.filter {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        min-height: 70vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      h3 {
+        color: white;
+        font-size: 2.5rem;
+        text-align: center;
+      }
+    }
+    section.info-circles {
+      background-color: white;
+      padding: 2rem 1rem;
+
+      h3 {
+        text-align: center;
+        font-size: 2rem;
+      }
+      div.circles {
+        //   border: 3px solid black;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        div.circle {
+          padding: 1rem;
+          // border: 1px red solid;
+          // 不分剩餘空間每個div最多，只占250px
+          flex: 0 1 250px;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            width: 80%;
+            border-radius: 100%;
+            transition: all 0.1s ease-in;
+            padding: 0.3rem;
+            &:hover {
+              border: 2px $themeColor solid;
+            }
+          }
+        }
+      }
+    }
+    section.empty-container {
+      min-height: 70vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h3 {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+    section.google-map {
+      // 有設定顏色 背景就不穿透了!
+      background-color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      h3 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.25rem;
+        margin: 1rem;
+      }
+      iframe {
+        width: 100%;
+        height: 40vh;
+      }
+    }
+  }
+  footer {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    section.logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 20vw;
+      }
+      h3 {
+        font-size: 2.5rem;
+      }
+    }
+    section.links {
+      margin-top: 2rem;
+      a {
+        img {
+          width: 5vh;
+          margin: 0 1rem;
+        }
+      }
+    }
+  }
+}
+// div#myDiv {
+//   background-image: url(../images/北海道雪景.jpg);
+// }
+
+@media screen and (max-width: 1024px) {
+  body {
+    header {
+      flex-wrap: wrap;
+
+      section.logo {
+        flex: 2 1 600px;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        h1 {
+          z-index: 1;
+          &::before {
+            content: "\200B";
+            position: absolute;
+            left: 0px;
+            width: 100vw; /* 占满父元素宽度 */
+            background-color: rgb(234, 226, 184); /* 下方背景颜色 */
+            z-index: -1;
+          }
+        }
+
+        img {
+          width: 170px;
+          height: 170px;
+        }
+      }
+      nav {
+        flex: 5 1 500px;
+        ul {
+          flex-direction: column;
+
+          li {
+            margin: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(248, 148, 181);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: palevioletred;
+}

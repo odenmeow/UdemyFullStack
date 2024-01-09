@@ -1,0 +1,239 @@
+* {
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+  main {
+    section.cal-Area {
+      position: relative;
+      border: 2px blue solid;
+      height: 80vh;
+      width: 90vw;
+      left: 2rem;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: row-reverse;
+
+      form {
+        border: gray 2px solid;
+        width: 70%;
+        height: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        section.yoichi-block-title {
+          margin-top: 1rem;
+        }
+        section.yoichi-block {
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          //   justify-content: space-between;
+          flex-wrap: nowrap;
+
+          .yoichi-p-name {
+            // border: 2px rgb(145, 241, 149) solid;
+            color: red;
+            text-align: center;
+            flex-grow: 1;
+            flex-basis: 15%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p {
+              margin: 0;
+            }
+          }
+          .yoichi-p-number {
+            flex-grow: 1;
+            flex-basis: 5%;
+            text-align: center;
+          }
+          input[type="text"] {
+            width: 10%;
+          }
+          .yoichi-p-btns {
+            flex-grow: 1;
+            flex-basis: 70%;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+
+            div {
+              // border: yellow 2px solid;
+              //   border-radius: %;
+              flex-basis: 15%;
+              button {
+                width: 100%;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+      section.totalize {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 30%;
+        border: red solid 2px;
+        .yoichi-order {
+          display: flex;
+          flex-basis: 15%;
+
+          .yoichi-orderTime {
+            border: yellow solid 2px;
+            flex-basis: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p {
+              margin: 0;
+            }
+          }
+          .yoichi-orderNumber {
+            border: green solid 2px;
+            flex-basis: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p {
+              margin: 0;
+            }
+          }
+        }
+        .yoichi-calculating {
+          margin-top: 2rem;
+          border: springgreen solid 2px;
+          flex-basis: 50%;
+          display: flex;
+          flex-direction: column;
+          .yoichi-subtotalArea {
+            flex-basis: 30%;
+            // border: black solid 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .yoichi-subtotal {
+              flex-basis: 35%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p {
+                margin: 0;
+              }
+            }
+            .yoichi-subtotalValue {
+              flex-basis: 65%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p {
+                margin: 0;
+              }
+            }
+          }
+          .yoichi-discountArea {
+            flex-basis: 30%;
+            // border: pink solid 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .yoichi-discount {
+              flex-basis: 35%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p {
+                margin: 0;
+              }
+            }
+            input[type="text"] {
+              width: 50%;
+              border-bottom: 2px solid black;
+            }
+            .yoichi-discountValue {
+              flex-basis: 65%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          .yoichi-totalArea {
+            // border: red solid 2px;
+            display: flex;
+            flex-basis: 40%;
+            .yoichi-total {
+              flex-basis: 35%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p {
+                margin: 0;
+              }
+            }
+            .yoichi-totalValue {
+              flex-basis: 65%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p {
+                margin: 0;
+              }
+            }
+          }
+        }
+        .yoichi-split {
+          border: brown solid 2px;
+          flex: 35%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .yoichi-revise {
+            border: chartreuse solid 2px;
+            flex-basis: 35%;
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            p {
+              margin: 0;
+            }
+          }
+          .yoichi-generate {
+            border: green solid 2px;
+            flex-basis: 65%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button {
+              height: 80%;
+              width: 80%;
+              // background-color: ;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+aside.floating-element {
+  // border: red solid 2px;
+  border-radius: 50%;
+  position: fixed;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.75rem;
+  right: 1rem;
+  top: 50vh;
+  align-items: center;
+  text-align: center;
+  a {
+    text-decoration: none;
+  }
+}

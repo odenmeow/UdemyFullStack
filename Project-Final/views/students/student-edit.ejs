@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>修改資料</title>
+    <meta name="author" content="Onini" />
+    <style>
+      h1 {
+        position: fixed;
+        left: 50%;
+        top: 10vh;
+        transform: translate(-50%, 0%);
+      }
+      tr,
+      td,
+      table {
+        border-collapse: collapse;
+        /* border: 2px black solid; */
+        padding: 1rem;
+      }
+      table {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -70%);
+      }
+      button {
+        position: absolute;
+        left: 50%;
+        bottom: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>修改資料</h1>
+    <!-- 必須使用POST 這樣才會幫忙放到BODY ! -->
+    <form action="/students/<%=data._id%>?_method=PATCH" method="POST">
+      <!-- <input type="hidden" name="_method" value="PATCH" /> -->
+      <table>
+        <tr>
+          <td><label for="student-name">姓名</label></td>
+          <td>
+            <input
+              type="text"
+              id="student-name"
+              name="name"
+              value="<%=data.name%>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="student-age">年齡</label></td>
+          <td>
+            <input
+              type="text"
+              id="student-age"
+              name="age"
+              value="<%=data.age%>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="student-major">主修</label></td>
+          <td>
+            <input
+              type="text"
+              id="student-major"
+              name="major"
+              value="<%=data.major%>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="student-merit">merit</label></td>
+          <td>
+            <input
+              type="text"
+              id="student-merit"
+              name="merit"
+              value="<%=data.scholarship.merit%>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="student-other">other</label></td>
+          <td>
+            <input
+              type="text"
+              id="student-other"
+              name="other"
+              value="<%=data.scholarship.other%>"
+            />
+          </td>
+        </tr>
+      </table>
+
+      <button type="submit">送出表單</button>
+    </form>
+  </body>
+</html>

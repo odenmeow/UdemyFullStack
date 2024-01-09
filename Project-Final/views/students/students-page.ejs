@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=studentData.name%>的頁面</title>
+    <meta name="author" content="Onini" />
+    <style>
+      h1 {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, 0%);
+      }
+      tr,
+      td,
+      table {
+        border-collapse: collapse;
+        border: 2px black solid;
+        padding: 1rem;
+      }
+      table {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -70%);
+      }
+      a {
+        position: absolute;
+        left: 50%;
+        bottom: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>學生個資</h1>
+    <!-- <ul> -->
+    <% //let properties=Object.keys(studentData[0].toJSON()) %> <%
+    //properties.forEach(prop=>{ %>
+    <!-- <li><%//=prop%>:<%//=studentData[0][prop]%></li> -->
+    <%//}) %>
+    <!-- </ul> -->
+
+    <table>
+      <tbody>
+        <tr>
+          <td>編號</td>
+          <td><%=studentData[0]._id%></td>
+        </tr>
+        <tr>
+          <td>名稱</td>
+          <td><%=studentData[0].name%></td>
+        </tr>
+        <tr>
+          <td>年齡</td>
+          <td><%=studentData[0].age%></td>
+        </tr>
+        <tr>
+          <td>主修</td>
+          <td><%=studentData[0].major%></td>
+        </tr>
+        <tr>
+          <td>merit</td>
+          <td><%=studentData[0].scholarship.merit%></td>
+        </tr>
+        <tr>
+          <td>other</td>
+          <td><%=studentData[0].scholarship.other%></td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/students">回首頁</a>
+  </body>
+</html>

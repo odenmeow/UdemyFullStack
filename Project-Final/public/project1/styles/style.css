@@ -1,0 +1,209 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: DFkai-sb, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+header div.top {
+  padding: 1rem;
+  background-image: url(./images/background.png);
+  /* background-position: bottom; */
+  /* background-repeat: no-repeat; */
+  /* background-size: contain; */
+  overflow: auto;
+}
+
+header div.top h1 {
+  font-size: 2.5rem;
+}
+header div.top h3 {
+  font-size: 1rem;
+}
+header nav {
+  background-color: black;
+}
+header nav ul {
+  display: flex;
+  /* justify-content: space-around; */
+  /* align-items: start; */
+  list-style: none;
+}
+header nav ul li {
+  padding: 0.8rem 1.2rem;
+}
+
+nav ul li a {
+  color: aliceblue;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+nav ul li a:hover {
+  color: yellow;
+  transition: all 0.4s ease-in;
+}
+.active {
+  color: yellow;
+}
+
+section.left {
+  flex: 1 1 200px;
+  margin-top: 1rem;
+  margin-right: 1.5rem;
+  margin-left: 1rem;
+}
+
+section.left > figure {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+section.left > figure > img {
+  width: 100%;
+  height: auto;
+}
+/* section.left > figure > img.vertical-expand {
+  max-width: none;  移除最大寬度限制 
+} */
+section.left > figure figcaption {
+  text-align: center;
+}
+
+section.left > table {
+  /* border: 2px solid blueviolet; */
+  margin-left: 1.5rem;
+}
+section.left > table td {
+  padding: 0.5rem;
+}
+
+section.right {
+  flex-basis: 500px;
+  flex-grow: 5;
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+}
+section.right hr {
+  margin-right: 1.5rem;
+}
+section.right ul {
+  margin-top: 1rem;
+}
+section.right li {
+  margin-left: 2rem;
+  /* overflow-wrap: break-word; */
+}
+p {
+  padding: 0.5rem 1rem;
+}
+hr {
+  margin: 0.5rem 0rem;
+}
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+main h3 {
+  margin: 1rem 0rem;
+}
+
+main.main-korea {
+  display: block;
+}
+
+main.main-korea > section h2 {
+  padding: 0.5rem 1rem;
+}
+
+main.main-korea > section > article {
+  margin: 1.5rem 3rem;
+  padding: 0.5rem;
+  border: 2px solid goldenrod;
+  overflow: auto;
+}
+main.main-korea > section > article h3 {
+  margin: 0rem 0rem;
+  font-size: 1.5rem;
+  color: darkolivegreen;
+}
+main.main-korea > section > article h4 {
+  margin: 0rem 0rem;
+  padding-left: 0.3rem;
+  font-size: 1rem;
+  color: darkolivegreen;
+}
+main.main-japan {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+main.main-japan section {
+  display: flex;
+  flex-wrap: wrap;
+}
+div.jp-fig {
+  flex: 1 1 300px;
+  margin: 2rem;
+}
+main.main-japan > section figure figcaption {
+  text-align: center;
+  margin-top: 1rem;
+}
+main.main-japan > section figure img {
+  width: 100%;
+  height: auto;
+}
+article.info {
+  flex: 1 1 600px;
+  margin: 2.5rem;
+}
+main.main-japan > section > article ul {
+  margin: 0.5rem 3rem;
+}
+
+#competition-introduce {
+  flex: 1 1 400px;
+  /* border: solid 1px red; */
+  margin-left: 1rem;
+}
+.pie-chart {
+  flex: 1 1 400px;
+  margin-top: 0.5rem;
+}
+#chart_div {
+  transform: translate(10%, 10%);
+}
+
+.main-china {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#china-table {
+  margin-left: 1rem;
+}
+#china-table tbody td {
+  padding: 0.25rem 0.5rem;
+}
+
+#china-table,
+#china-table tbody tr {
+  border-bottom: 1px solid darkcyan;
+  border-collapse: collapse;
+  padding: 0.2rem 0;
+}
+#china-table thead td {
+  background-color: darkcyan;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
