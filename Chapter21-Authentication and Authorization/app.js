@@ -9,9 +9,9 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
 const bcrypt = require("bcrypt");
-const checkUser = (req, res, next) => {
+const verifyUser = (req, res, next) => {
   if (!req.session.isVerified) {
-    return res.send("先驗證過才能看到內容");
+    return res.send("先登入");
   } else {
     next();
   }
@@ -66,6 +66,36 @@ app.post("/students", async (req, res) => {
   }
 });
 
+app.post("/students/login", async (req, res) => {
+  try {
+    let { username, password } = req.body;
+    let data = await Student.findOne({ username }).exec();
+    console.log("準備驗證");
+    if (!data) {
+      return res.status(404).send("查無使用者");
+    } else {
+      //如果右邊錯誤，直接沒反應，需要用catch
+      let result = await bcrypt.compare(password, data.password);
+      console.log(result);
+      if (result) {
+        req.session.isVerified = true;
+        return res.send("登入成功");
+      } else {
+        req.session.isVerified = false;
+        return res.send("登入失敗");
+      }
+    }
+  } catch (e) {
+    return res.status(400).send("失敗" + e);
+  }
+});
+app.post("/students/logout", (req, res) => {
+  req.session.isVerified = false;
+  return res.send("已經登出");
+});
+app.get("/secret", verifyUser, async (req, res) => {
+  return res.send("看得到我代表成功登入");
+});
 app.listen(3000, () => {
   console.log("server running on port 3000");
 });
