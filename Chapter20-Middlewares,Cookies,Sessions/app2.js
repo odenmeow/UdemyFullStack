@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -17,10 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(methodOverride("_method"));
-app.use(cookieParser("我是密碼，塞密碼就對了"));
+app.use(cookieParser(process.env.COOKIEKEY));
 app.use(
   session({
-    secret: "onimimimi555111",
+    secret: process.env.SESSIONKEY,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }, //localhost無法https
