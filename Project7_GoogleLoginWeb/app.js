@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth-routes");
+const profileRouter = require("./routes/profile-routes");
 const session = require("express-session");
 const passport = require("passport");
 require("./config/passport");
@@ -30,8 +31,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/auth", authRouter);
+app.use("/profile", profileRouter);
 app.get("/", (req, res) => {
-  return res.render("index");
+  return res.render("index", { user: req.user });
 });
 
 app.listen(8080, () => {

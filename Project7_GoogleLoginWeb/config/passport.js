@@ -9,6 +9,13 @@ passport.serializeUser((user, done) => {
   //並且id簽名後 以cookie交給user
 });
 
+passport.deserializeUser(async (_id, done) => {
+  console.log("反序列化使用者(回歸物件)，透過之前序列化的資料，得到_id");
+  let foundUser = await User.findOne({ _id });
+  done(null, foundUser);
+  // paspport 將 req.user的這個屬性設定為 foundUser 方便存取。
+});
+
 passport.use(
   new GoogleStrategy(
     {
