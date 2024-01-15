@@ -6,6 +6,7 @@ npm i passport-google-oauth20
 npm i passport
 npm i connect-flash
 npm i bcrypt
+npm i passport-local
 
 # 忽視以下
 

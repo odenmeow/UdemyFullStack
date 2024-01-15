@@ -11,6 +11,16 @@ router.get("/logout", (req, res) => {
     return res.redirect("/");
   });
 });
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/auth/login",
+    failureFlash: "登入失敗，帳號或密碼錯誤", // 自動套入 req.locals.error這邊
+  }),
+  async (req, res) => {
+    return res.redirect("/profile"); //成功才會到這邊
+  }
+);
 router.get("/signup", (req, res) => {
   return res.render("signup", { user: req.user });
 });

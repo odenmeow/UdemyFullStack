@@ -1,7 +1,8 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
 const User = require("../models/user-model");
-
+const LocalStrategy = require("passport-local");
+const bcrypt = require("bcrypt");
 passport.serializeUser((user, done) => {
   console.log("serialize user");
   console.log(user);
@@ -46,4 +47,20 @@ passport.use(
       }
     }
   )
+);
+// 這邊的username , password 是根據post自動從req.body 解構進去的
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    let foundUser = await User.findOne({ email: username }).exec();
+    if (foundUser) {
+      let result = await bcrypt.compare(password, foundUser.password);
+      if (result) {
+        done(null, foundUser);
+      } else {
+        done(null, false);
+      }
+    } else {
+      done(null, false);
+    }
+  })
 );
