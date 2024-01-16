@@ -2,10 +2,12 @@ import React from "react";
 
 const nav = () => {
   return (
-    <nav>
+    <nav style={{ backgroundColor: "lightpink" }}>
       <ul>
         <li>
-          <a href="#">首頁</a>
+          <a href="#" style={{ color: "red" }}>
+            首頁
+          </a>
         </li>
         <li>
           <a href="#">另一個頁面</a>
