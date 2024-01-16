@@ -5,12 +5,18 @@ const nav = () => {
     <nav style={{ backgroundColor: "lightpink" }}>
       <ul>
         <li>
-          <a href="#" style={{ color: "red" }}>
-            首頁
-          </a>
+          {
+            // eslint-disable-next-line
+            <a href="#" style={{ color: "red" }}>
+              首頁
+            </a>
+          }
         </li>
         <li>
-          <a href="#">另一個頁面</a>
+          {
+            // eslint-disable-next-line
+            <a href="#">另一個頁面</a>
+          }
         </li>
       </ul>
     </nav>

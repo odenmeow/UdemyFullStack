@@ -1,17 +1,12 @@
 import React from "react";
 import "./styles/style.css";
-const something = () => {
-  return 100;
-};
 
-const info = () => {
-  let friends = ["咪咪", "阿橘", "黑皮"];
+const info = (props) => {
+  console.log(props);
   return (
     <div className="info">
-      <p>朋友:</p>
-      {friends.map((friend) => (
-        <p>{friend}</p>
-      ))}
+      <h1>名稱:{props.name}</h1>
+      <h1>年紀:{props.age}</h1>
     </div>
   );
 };
