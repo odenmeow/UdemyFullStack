@@ -1,14 +1,16 @@
-// import Nav from "./nav";
-import Info from "./info";
-import Create from "./Create";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function App() {
-  let [messages, setMessages] = useState([]); //初始值為空arr
-
+  let [myName, setMyName] = useState("Oni");
+  const buttonHandler = () => {
+    setMyName("Umi");
+  };
+  useEffect(() => {
+    console.log("useEffect內部的fn執行中");
+  }, [myName]);
   return (
     <div>
-      <Create messages={messages} setMessages={setMessages} />
-      <Info messages={messages} setMessages={setMessages} />
+      <h1>{myName}</h1>
+      <button onClick={buttonHandler}>改變姓名</button>
     </div>
   );
 }
