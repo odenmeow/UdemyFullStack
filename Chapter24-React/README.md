@@ -23,3 +23,7 @@ extensions 使用
     "powershell": ".ps1",
     "typescript": ".
 ```
+
+# 安裝 package 讓畫面能根據 route 切換
+
+npm i react-router-dom
