@@ -7,7 +7,7 @@ const courseSchema = new Schema({
     required: true,
   },
   description: {
-    tpye: String,
+    type: String,
     required: true,
   },
   price: {
