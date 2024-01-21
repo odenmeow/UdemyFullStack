@@ -2,6 +2,7 @@ const router = require("express").Router();
 const registerValidation = require("../validation").registerValidation;
 const loginValidation = require("../validation").loginValidation;
 const User = require("../models").user;
+const jwt = require("jsonwebtoken");
 router.use((req, res, next) => {
   console.log("正在接受auth有關的請求");
   next();
@@ -30,6 +31,35 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     return res.status(500).send("無法儲存使用者");
   }
+});
+
+router.post("/login", async (req, res) => {
+  // 確認格式是否正確
+  let { error } = loginValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+  // 確認信箱是否已註冊過
+  const foundUser = await User.findOne({ email: req.body.email });
+  if (!foundUser) return res.status(400).send("找不到使用者，請確認信箱");
+  foundUser.comparePassword(req.body.password, (err, isMatch) => {
+    console.log("pass");
+    if (err) {
+      console.log("錯誤", err);
+      return res.status(500).send(err); // err發生
+    }
+    if (isMatch) {
+      // 製作JWT
+      const tokenObject = { _id: foundUser._id, email: foundUser.email };
+      const token = jwt.sign(tokenObject, process.env.PASSPORT_SECRET);
+      return res.send({
+        msg: "成功登入",
+        token: "JWT " + token, //JWT 後面留一個空白!
+        user: foundUser,
+      });
+    } else {
+      // 密碼錯誤
+      return res.status(401).send("密碼錯誤");
+    }
+  });
 });
 
 module.exports = router;
