@@ -29,7 +29,7 @@ router.post("/register", async (req, res) => {
       savedUser: savedUser,
     });
   } catch (error) {
-    return res.status(500).send("無法儲存使用者");
+    return res.status(500).send("無法儲存使用者" + error);
   }
 });
 
