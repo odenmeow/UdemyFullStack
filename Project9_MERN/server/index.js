@@ -6,6 +6,7 @@ dotenv.config();
 const authRoute = require("./routes").auth;
 const courseRoute = require("./routes").course;
 const passport = require("passport");
+const cors = require("cors");
 require("./config/passport")(passport);
 mongoose
   .connect("mongodb://127.0.0.1:27017/MernDB")
@@ -18,7 +19,7 @@ mongoose
 // middleWares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 app.use("/api/user", authRoute);
 
 // 只有登入系統的人，instructor才能夠製作，student才能註冊課程
