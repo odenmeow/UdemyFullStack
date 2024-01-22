@@ -1,3 +1,5 @@
+const { course } = require("../models");
+
 const router = require("express").Router();
 const Course = require("../models").course;
 const courseValidation = require("../validation").courseValidation;
@@ -65,12 +67,24 @@ router.get("/findByName/:name", async (req, res) => {
   //   title: { $regex: name, $option: "i" },
   // });
   try {
-    let foundCourse = await Course.find({ title: regex })
+    let foundCourses = await Course.find({ title: regex })
       .populate("instructor", ["email", "username"])
       .exec();
-    return res.send(foundCourse);
+    return res.send(foundCourses);
   } catch (e) {
     return res.status(500).send(e);
+  }
+});
+// 學生註冊課程的功能 ( by 課程id)
+router.post("/enroll/:_id", async (req, res) => {
+  let { _id } = req.params;
+  try {
+    let foundCourse = await Course.findOne({ _id });
+    foundCourse.students.push(req.user._id);
+    await foundCourse.save();
+    res.send("註冊完成");
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 // 新增課程
