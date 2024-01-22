@@ -1,13 +1,45 @@
 import React, { useState } from "react";
-
+import AuthService from "../services/auth.service";
+import { useNavigate } from "react-router-dom";
 const RegisterComponent = () => {
+  const navigate = useNavigate();
+  let [username, setUsername] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [role, setRole] = useState("");
+  let [message, setMessage] = useState("");
+  // 別使用function 除非另外設定 bind(this)
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  };
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleRole = (e) => {
+    setRole(e.target.value);
+  };
+  const handleRegister = () => {
+    AuthService.register(username, email, password, role)
+      .then(() => {
+        window.alert("註冊成功，即將導向登入頁面");
+        navigate("/login");
+      })
+      .catch((e) => {
+        // console.log(e);
+        setMessage(e.response.data);
+      });
+  };
   return (
     <div style={{ padding: "3rem" }} className="col-md-12">
       <div>
+        {message && <div className="alert alert-danger">{message}</div>}
         <div>
           <label htmlFor="username">用戶名稱:</label>
           <input
-            onChange={handleChangeUsername}
+            onClick={handleUsername}
             type="text"
             className="form-control"
             name="username"
@@ -17,7 +49,7 @@ const RegisterComponent = () => {
         <div className="form-group">
           <label htmlFor="email">電子信箱：</label>
           <input
-            onChange={handleChangeEmail}
+            onChange={handleEmail}
             type="text"
             className="form-control"
             name="email"
@@ -27,7 +59,7 @@ const RegisterComponent = () => {
         <div className="form-group">
           <label htmlFor="password">密碼：</label>
           <input
-            onChange={handleChangePassword}
+            onChange={handlePassword}
             type="password"
             className="form-control"
             name="password"
@@ -38,7 +70,7 @@ const RegisterComponent = () => {
         <div className="form-group">
           <label htmlFor="password">身份：</label>
           <input
-            onChange={handleChnageRole}
+            onChange={handleRole}
             type="text"
             className="form-control"
             placeholder="只能填入student或是instructor這兩個選項其一"

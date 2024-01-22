@@ -3,6 +3,7 @@
 `裝在client`
 
 npm install react-router-dom
+npm i axios
 
 # Getting Started with Create React App
 
