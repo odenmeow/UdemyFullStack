@@ -39,6 +39,18 @@ class CourseService {
       headers: { Authorization: token },
     });
   }
+  // 依照課程名稱找出課程
+  getCourseByName(name) {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+    return axios.get(API_URL + "/findByName/" + name, {
+      headers: { Authorization: token },
+    });
+  }
 }
 
 let courseService = new CourseService();

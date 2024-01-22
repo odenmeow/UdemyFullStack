@@ -55,6 +55,24 @@ router.get("/:_id", async (req, res) => {
     return res.status(500).send(e);
   }
 });
+
+// 依照課程名稱找課程
+router.get("/findByName/:name", async (req, res) => {
+  let { name } = req.params;
+  // 正則表達也能找尋模糊搜尋，i 不分大小寫
+  const regex = new RegExp(name, "i");
+  // let foundCourse = await Course.find({
+  //   title: { $regex: name, $option: "i" },
+  // });
+  try {
+    let foundCourse = await Course.find({ title: regex })
+      .populate("instructor", ["email", "username"])
+      .exec();
+    return res.send(foundCourse);
+  } catch (e) {
+    return res.status(500).send(e);
+  }
+});
 // 新增課程
 router.post("/", async (req, res) => {
   //數據要先符合規範
