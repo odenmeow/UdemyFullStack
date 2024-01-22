@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-const NavComponent = () => {
+import AuthService from "../services/auth.service";
+const NavComponent = ({ currentUser, setCurrentUser }) => {
+  // 不需要使用Nav 因為下面 Link 有使用to所以會自己導向
+  const handleLogOut = () => {
+    AuthService.logout();
+    window.alert("登出成功");
+    setCurrentUser(null);
+  };
   return (
     <div>
       <nav>
@@ -26,48 +32,55 @@ const NavComponent = () => {
                     首頁
                   </Link>
                 </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/register">
-                    註冊會員
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    會員登入
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/">
-                    登出
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/profile">
-                    個人頁面
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/course">
-                    課程頁面
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/postCourse">
-                    新增課程
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/enroll">
-                    註冊課程
-                  </Link>
-                </li>
+                {!currentUser && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/register">
+                      註冊會員
+                    </Link>
+                  </li>
+                )}
+                {!currentUser && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      會員登入
+                    </Link>
+                  </li>
+                )}
+                {currentUser && (
+                  <li className="nav-item">
+                    <Link onClick={handleLogOut} className="nav-link" to="/">
+                      登出
+                    </Link>
+                  </li>
+                )}
+                {currentUser && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/profile">
+                      個人頁面
+                    </Link>
+                  </li>
+                )}
+                {currentUser && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/course">
+                      課程頁面
+                    </Link>
+                  </li>
+                )}
+                {currentUser && currentUser.user.role === "instructor" && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/postCourse">
+                      新增課程
+                    </Link>
+                  </li>
+                )}
+                {currentUser && currentUser.user.role === "student" && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/enroll">
+                      註冊課程
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
