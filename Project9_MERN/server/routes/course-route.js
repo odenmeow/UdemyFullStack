@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const Course = require("../models").course;
 const courseValidation = require("../validation").courseValidation;
-
 router.use((req, res, next) => {
   console.log("course route 接收request...");
   console.log("驗證身分通過");
@@ -10,14 +9,37 @@ router.use((req, res, next) => {
 // 取得所有課程
 router.get("/", async (req, res) => {
   try {
-    let foundCourse = await Course.find({})
+    let foundCourses = await Course.find({})
       .populate("instructor", ["username", "email", "password"])
       .exec();
 
-    res.send(foundCourse);
+    res.send(foundCourses);
   } catch (error) {
     return res.status(500).send(error);
   }
+});
+
+// 依照講師id尋找課程
+router.get("/instructor/:instructor_id", async (req, res) => {
+  let { instructor_id } = req.params;
+  try {
+    let foundCourses = await Course.find({ instructor: instructor_id })
+      .populate("instructor", ["username", "email"])
+      .exec();
+    res.send(foundCourses);
+  } catch (e) {
+    return res.send(500).send(e);
+  }
+});
+// 用學生id尋找課程
+router.get("/student/:student_id", async (req, res) => {
+  let { student_id } = req.params;
+  try {
+    let foundCourses = await Course.find({ students: student_id })
+      .populate("instructor", ["username", "email"])
+      .exec();
+    return res.send(foundCourses);
+  } catch (error) {}
 });
 
 // 依照課程id 找課程
