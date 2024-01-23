@@ -7,9 +7,10 @@ const authRoute = require("./routes").auth;
 const courseRoute = require("./routes").course;
 const passport = require("passport");
 const cors = require("cors");
+const port = process.env.PORT || 8080;
 require("./config/passport")(passport);
 mongoose
-  .connect("mongodb://127.0.0.1:27017/MernDB")
+  .connect(process.env.MONGODB_CLOUDE_URL)
   .then(() => {
     console.log("成功連接到MongoDB..");
   })
@@ -31,6 +32,6 @@ app.use(
   courseRoute
 );
 
-app.listen(8080, () => {
+app.listen(port, () => {
   console.log("Backend on port 8080");
 });

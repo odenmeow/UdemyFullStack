@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:8080/api/courses";
+const API_URL = "https://server-vf7h.onrender.com/api/courses";
 function getToken() {
   let token;
   if (localStorage.getItem("user")) {
