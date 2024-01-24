@@ -1,3 +1,8 @@
+import Layout from "../../components/layout";
 export default function Post() {
-  return <h1>這是post首頁</h1>;
+  return (
+    <Layout returnBack={true}>
+      <h1>這是post首頁</h1>
+    </Layout>
+  );
 }
