@@ -1,0 +1,13 @@
+.header {
+  background-color: black;
+  color: aqua;
+}
+
+.layout {
+  padding: 3rem;
+}
+
+.home {
+  color: orange;
+  text-decoration: none;
+}
