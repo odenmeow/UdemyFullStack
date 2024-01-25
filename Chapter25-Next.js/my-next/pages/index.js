@@ -13,6 +13,10 @@ export default function Home() {
         <Link href="/posts/edit-post">前往editPost_使用Link</Link>
         <hr />
         <Link href="/newPage">前往newPage</Link>
+        <hr />
+        <Link href="/profile/static-generation-with-data">
+          前往static-generation-with-data
+        </Link>
       </div>
     </Layout>
   );
