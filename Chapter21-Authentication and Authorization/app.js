@@ -53,9 +53,13 @@ app.get("/students", async (req, res) => {
   return res.send(foundStudent);
 });
 app.get("/students/:_id", async (req, res) => {
-  let { _id } = req.params;
-  let foundStudent = await Student.findOne({ _id });
-  return res.send(foundStudent);
+  try {
+    let { _id } = req.params;
+    let foundStudent = await Student.findOne({ _id });
+    return res.send(foundStudent);
+  } catch (e) {
+    return res.send({});
+  }
 });
 
 app.post("/students", async (req, res) => {

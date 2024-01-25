@@ -21,7 +21,16 @@
 // }
 import Link from "next/link";
 import Layout from "../../components/layout";
-export async function getStaticProps() {
+// export async function getStaticProps() {
+//   const response = await fetch("http://localhost:3001/students");
+//   const data = await response.json();
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// }
+export async function getServerSideProps() {
   const response = await fetch("http://localhost:3001/students");
   const data = await response.json();
   return {
