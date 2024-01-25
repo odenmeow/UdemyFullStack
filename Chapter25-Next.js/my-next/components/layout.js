@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import styles from "./layout.module.css";
 
-export default function Layout({ children, returnBack }) {
+export default function Layout({ children, returnBack, returnPrevious }) {
   return (
     <div className={styles.layout}>
       <Head>
@@ -24,6 +24,7 @@ export default function Layout({ children, returnBack }) {
           回到首頁
         </Link>
       )}
+      {returnPrevious && <Link href={returnPrevious}>回上一頁</Link>}
     </div>
   );
 }

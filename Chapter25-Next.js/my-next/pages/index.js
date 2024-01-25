@@ -17,6 +17,8 @@ export default function Home() {
         <Link href="/profile/static-generation-with-data">
           前往static-generation-with-data
         </Link>
+        <hr />
+        <Link href="/profile">前往profile</Link>
       </div>
     </Layout>
   );

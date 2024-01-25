@@ -52,6 +52,12 @@ app.get("/students", async (req, res) => {
   // console.log("找到了");
   return res.send(foundStudent);
 });
+app.get("/students/:_id", async (req, res) => {
+  let { _id } = req.params;
+  let foundStudent = await Student.findOne({ _id });
+  return res.send(foundStudent);
+});
+
 app.post("/students", async (req, res) => {
   try {
     let { username, password } = req.body;
