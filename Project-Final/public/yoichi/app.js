@@ -214,8 +214,18 @@ function displayProducts(info, oid) {
     // 後續不可以Product.historyupdate覆蓋，會覆蓋商家的最新編輯售價
     // 送出修改之後，重新diplayProducts("new")
     // HTMLTime要停止 、改成訂單產生的時間
-    Product.products = Order.orders[oid].productsLog;
-    PickedProduct.pickedProducts = Order.orders[oid].details;
+    // 下面兩行不小心害我誤傷QQ
+    // Product.products = Order.orders[oid].productsLog;
+    // PickedProduct.pickedProducts = Order.orders[oid].details;
+    // 深拷貝 Product.products
+    Product.products = JSON.parse(
+      JSON.stringify(Order.orders[oid].productsLog)
+    );
+
+    // 深拷貝 PickedProduct.pickedProducts
+    PickedProduct.pickedProducts = JSON.parse(
+      JSON.stringify(Order.orders[oid].details)
+    );
     // 改變按鈕 【送出】 => 【修改】 如果null代表找不到，那一定跟上一個訂單有關
     let reviseOrderBtn = document.querySelector(".yoichi-order-send");
     reviseOrderBtn.classList.add("yoichi-order-revise");
@@ -711,6 +721,9 @@ function loadOrderPage() {
               Order.orders[header_num].status = "paid";
               document.querySelector(`[data-bs-title="${header_num}"]`).click();
               Order.historyUpdate(); //保存狀態否則畫面f5刷新就沒了
+              console.log(Order.orders[header_num]);
+              displayProducts("new"); //編輯到一半付錢就視同放棄修改
+
               loadOrderPage();
             });
             reviseBtn.addEventListener("click", (e) => {
@@ -736,6 +749,7 @@ function loadOrderPage() {
                   .querySelector(`[data-bs-title="${header_num}"]`)
                   .click();
                 Order.historyUpdate(); //保存狀態否則畫面f5刷新就沒了
+                displayProducts("new");
                 loadOrderPage();
               } else {
                 // 不可以跳過付錢的警告
