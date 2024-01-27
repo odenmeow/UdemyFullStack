@@ -221,7 +221,7 @@ function displayProducts(info, oid) {
     reviseOrderBtn.classList.add("yoichi-order-revise");
     reviseOrderBtn.classList.remove("yoichi-order-create");
     reviseOrderBtn.classList.remove("immutable-order");
-    reviseOrderBtn.innerText = "生成";
+    reviseOrderBtn.innerText = "修改";
 
     if (Order.orders[oid].status == "paid") {
       // 改內容文字

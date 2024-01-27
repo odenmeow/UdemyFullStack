@@ -12,6 +12,7 @@ const project6Router = require("./routes/project6");
 const studentRouter = require("./routes/student-routes");
 const facultyRouter = require("./routes/faculty-routes");
 const yoichiRouter = require("./routes/yoichi");
+require("dotenv").config();
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -55,5 +56,5 @@ app.use((err, req, res, next) => {
 // });
 
 app.listen(port, () => {
-  console.log("server正在觀察中!");
+  console.log("server正在觀察中!", port);
 });
