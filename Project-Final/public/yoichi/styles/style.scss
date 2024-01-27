@@ -82,7 +82,11 @@ body {
         .yoichi-order {
           display: flex;
           flex-basis: 15%;
-
+          .yoichi-orderNumber {
+            &::before {
+              content: "No.";
+            }
+          }
           .yoichi-orderTime {
             border: yellow solid 2px;
             flex-basis: 40%;
@@ -191,15 +195,26 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-          .yoichi-revise {
+          .yoichi-tiptool {
             border: chartreuse solid 2px;
             flex-basis: 35%;
             display: flex;
             height: 100%;
             justify-content: center;
             align-items: center;
+
             p {
               margin: 0;
+            }
+            .yoichi-deprecatedBtn {
+              height: 80%;
+              width: 70%;
+              border-radius: 5%;
+              &:active {
+                transform: translateY(1px); /* 向下移動 2px，模擬按下效果 */
+                // box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 添加一點陰影效果 */
+                box-shadow: -1px 0px 5px 1px #61f477;
+              }
             }
           }
           .yoichi-generate {
@@ -219,6 +234,160 @@ body {
         }
       }
     }
+    section.presentation-Area {
+      position: relative;
+      border: 2px blue solid;
+      height: 95vh;
+      width: 90vw;
+      left: 2rem;
+      margin-top: 4rem;
+
+      display: flex;
+      flex-wrap: nowrap;
+
+      overflow-x: auto; /* 水平溢出滾動 */
+
+      .yoichi-order-shown {
+        border: 2px red solid;
+        height: 100%;
+
+        display: flex;
+        flex-basis: 25%;
+        flex-shrink: 0;
+        div.yoichi-card {
+          border: 2px green solid;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          div.yoichi-card-time-number {
+            border: goldenrod 2px solid;
+            flex-basis: 10%;
+            width: 100%;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            div.order-time {
+              width: 50%;
+              height: 100%;
+              border: darkorange 2px solid;
+              text-align: center;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              p {
+                padding: 0;
+                margin: 0;
+              }
+            }
+            div.order-number {
+              width: 50%;
+              height: 100%;
+              border: steelblue 2px solid;
+              text-align: center;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              p {
+                padding: 0;
+                margin: 0;
+
+                &.with-notation::before {
+                  content: "No.";
+                }
+              }
+            }
+          }
+          .yoichi-card-order-detail {
+            border: palevioletred 3px solid;
+            height: 10%;
+            width: 100%;
+            display: flex;
+            flex-basis: 75%;
+            flex-direction: column;
+            overflow: auto;
+            .order-detail {
+              border: black 3px solid;
+              height: 10%;
+              display: flex;
+
+              div.order-p-name {
+                border: black 3px solid;
+                flex-basis: 50%;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p {
+                  padding: 0;
+                  margin: 0;
+                }
+              }
+              div.order-p-number {
+                border: black 2px solid;
+                text-align: center;
+                flex-basis: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p {
+                  padding: 0;
+                  margin: 0;
+                }
+              }
+            }
+          }
+          div.yoichi-card-bottom {
+            border: 3px black solid;
+            flex-basis: 15%;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            div.order-total-price {
+              height: 100%;
+              flex-basis: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p {
+                padding: 0;
+                margin: 0;
+                &::after {
+                  content: "元";
+                }
+              }
+            }
+            div.order-buttonMotion {
+              flex-basis: 50%;
+              display: flex;
+              height: 100%;
+              justify-content: center;
+              align-items: center;
+              p {
+                padding: 0;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .successSend,
+  .noSend {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: fit-content;
+  }
+  footer {
+    position: relative;
+    display: block;
+    width: fit-content;
+    left: 50vw;
+
+    transform: translate(-50%, 0%);
   }
 }
 
@@ -235,5 +404,90 @@ aside.floating-element {
   text-align: center;
   a {
     text-decoration: none;
+  }
+}
+.popover-header {
+  text-align: center;
+}
+.popover-body {
+  position: relative;
+
+  width: 10rem;
+  padding: 0;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .fulfillOrder {
+    flex-basis: 33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    border-radius: 0 0 0 12%;
+    margin-bottom: 1px;
+
+    button {
+      border-radius: 0 0 0 12%;
+      height: 100%;
+      width: 100%;
+      &:active {
+        transform: translateY(1px); /* 向下移動 1px，模擬按下效果 */
+        box-shadow: 0px 0px 5px 0px #61f477;
+      }
+    }
+  }
+  .reviseOrder {
+    flex-basis: 33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin-bottom: 1px;
+
+    button {
+      height: 100%;
+      width: 100%;
+
+      &:active {
+        transform: translateY(1px); /* 向下移動 2px，模擬按下效果 */
+        // box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 添加一點陰影效果 */
+        box-shadow: -1px 0px 5px 1px #61f477;
+      }
+    }
+  }
+  .paidOrder {
+    flex-basis: 33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    border-radius: 0 0 12% 0;
+    margin-bottom: 1px;
+    button {
+      border-radius: 0 0 12% 0;
+      height: 100%;
+      width: 100%;
+      &:active {
+        transform: translateY(1px); /* 向下移動 2px，模擬按下效果 */
+        // box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 添加一點陰影效果 */
+        box-shadow: 0px 0px 5px 0px #61f477;
+      }
+    }
+  }
+}
+
+@keyframes opacityTransitions {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
