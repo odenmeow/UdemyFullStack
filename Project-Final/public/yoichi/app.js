@@ -93,12 +93,13 @@ class PickedProduct {
 class Order {
   static orders = [];
   // 生成訂單按鈕 按下去之後會把PickedProduct.pickedProducts=[] 清空 !
-  constructor(productsLog, details, totalPrice, orderTime, status) {
+  constructor(productsLog, details, totalPrice, orderTime, orderDate, status) {
     // 短路做法  JS 獨有 特性 ，JAVA無。
     this.productsLog = productsLog || Product.products;
     this.details = details || PickedProduct.pickedProducts;
     this.totalPrice = totalPrice || this.counting();
     this.orderTime = orderTime || generateTime("time");
+    this.orderDate = orderDate || generateTime("date");
     this.status = status || "pending";
     // status : pending paid fulfill
     Order.orders.push(this);
@@ -117,6 +118,12 @@ class Order {
         total += seletedProduct.pickedNumber * product.price;
       }
     });
+    let discount = document.querySelector(".yoichi-discountValue");
+    try {
+      total -= Number(discount.innerText);
+    } catch (e) {
+      alert("不可輸入數字以外");
+    }
     return total;
   }
   // 只有當需要讀取歷史紀錄才改變物件的static 內容，不用擔心一般訂單
@@ -146,7 +153,7 @@ class Order {
     Order.orders = [];
     // 針對每一筆訂單 解構
     data = data.map(
-      ({ productsLog, details, totalPrice, orderTime, status }) => {
+      ({ productsLog, details, totalPrice, orderTime, orderDate, status }) => {
         Product.products = []; //前後都要清空 ， 我只是做map 創新物件。
         PickedProduct.pickedProducts = [];
         //  如果displayProducts有需求 則使用讀取後的Order.orders內的資訊去查詢才正確!
@@ -158,13 +165,21 @@ class Order {
         });
         Product.products = [];
         PickedProduct.pickedProducts = [];
-        return new Order(productsLog, details, totalPrice, orderTime, status); //如果有傳入則用傳入的資訊
+        return new Order(
+          productsLog,
+          details,
+          totalPrice,
+          orderTime,
+          orderDate,
+          status
+        ); //如果有傳入則用傳入的資訊
       }
     );
     Order.orders = data;
   }
   static historyUpdate() {
     let { dateStr } = generateTime();
+    Order.orders = Order.orders.filter((order) => order.orderDate == dateStr);
     let itemKey = `yoichiOrders-${dateStr}`;
     localStorage.setItem(
       itemKey,
