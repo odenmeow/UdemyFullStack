@@ -1,5 +1,6 @@
 class HTMLTime {
   static interval;
+  static lock = false;
   constructor() {}
   static showTime() {
     let clock = document.querySelector(".yoichi-orderTime");
@@ -7,11 +8,15 @@ class HTMLTime {
     clock.innerText = timeStr;
   }
   static t_showUp() {
-    this.interval = setInterval(() => {
-      this.showTime();
-    }, 1000);
+    if (this.lock == false) {
+      this.lock = true;
+      this.interval = setInterval(() => {
+        this.showTime();
+      }, 1000);
+    }
   }
   static t_vanish() {
+    this.lock = false;
     clearInterval(this.interval);
   }
 }
@@ -233,7 +238,7 @@ function displayProducts(info, oid) {
     reviseOrderBtn.classList.remove("yoichi-order-create");
     reviseOrderBtn.classList.remove("immutable-order");
     reviseOrderBtn.innerText = "修改";
-    HTMLTime.t_vanish();
+
     if (Order.orders[oid].status == "paid") {
       // 改內容文字
       let btn = document.querySelector(".yoichi-order-revise");
