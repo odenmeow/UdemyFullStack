@@ -207,6 +207,7 @@ function displayProducts(info, oid) {
     reviseOrderBtn.classList.remove("immutable-order");
     reviseOrderBtn.innerText = "生成";
     document.querySelector(".yoichi-tiptool").innerHTML = "<p>新單</p>";
+    HTMLTime.t_showUp();
   } else if (info == "revise") {
     // 如果要求顯示舊訂單則依log去顯示
     // Product.products = Order.orders[oid].productsLog;
