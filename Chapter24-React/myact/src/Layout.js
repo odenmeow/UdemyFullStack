@@ -12,6 +12,9 @@ const Layout = () => {
           <li>
             <Link to="/about">關於網站 </Link>
           </li>
+          <li>
+            <Link to="/info">info </Link>
+          </li>
         </ul>
       </nav>
       <Outlet />
