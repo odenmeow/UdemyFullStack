@@ -22,7 +22,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/project7/auth/google/redirect",
+      callbackURL:
+        "https://portfolio-104l.onrender.com/project7/auth/google/redirect",
     },
     async (accessToken, refreshToken, profile, done) => {
       // console.log(profile);
