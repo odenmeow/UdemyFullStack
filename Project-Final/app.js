@@ -28,7 +28,7 @@ app.use(cors());
 app.use(methodOverride("_method"));
 const port = process.env.PORT || 8080;
 mongoose
-  .connect("mongodb://127.0.0.1:27017/GoogleDB")
+  .connect(process.env.MONGODB_CLOUDE_URL)
   .then(() => {
     console.log("mongoDB 連線成功");
   })
@@ -88,6 +88,6 @@ app.use((err, req, res, next) => {
 //   console.log("我是下一個next");
 // });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("server正在觀察中!", port);
 });
