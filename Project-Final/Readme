@@ -25,3 +25,7 @@ npm i dotenv
 
 
 test.js蠻重要的 ，也可讀一下
+
+# 追加安裝 (gpt幫我比對缺乏的)
+npm install bcrypt@^5.1.1 connect-flash@^0.1.1 passport-google-oauth20@^2.0.0 passport-local@^1.0.0
+他忽略了 npm i passport

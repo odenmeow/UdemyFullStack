@@ -13,6 +13,13 @@ const studentRouter = require("./routes/student-routes");
 const facultyRouter = require("./routes/faculty-routes");
 const yoichiRouter = require("./routes/yoichi");
 require("dotenv").config();
+const session = require("express-session");
+const passport = require("passport");
+const flash = require("connect-flash");
+require("./config/passport");
+
+const authRouter = require("./routes/auth-routes");
+const profileRouter = require("./routes/profile-routes");
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -21,7 +28,7 @@ app.use(cors());
 app.use(methodOverride("_method"));
 const port = process.env.PORT || 8080;
 mongoose
-  .connect(process.env.MONGODB_CLOUDE_URL)
+  .connect("mongodb://127.0.0.1:27017/GoogleDB")
   .then(() => {
     console.log("mongoDB 連線成功");
   })
@@ -45,6 +52,32 @@ app.use("/students", studentRouter);
 app.use("/faculty", facultyRouter);
 app.use("/yoichi", yoichiRouter);
 /////////////////////
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  })
+);
+// 用完session後 記得
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
+});
+app.get(["/project7/index", "/project7"], (req, res) => {
+  return res.render("project7/index", { user: req.user });
+});
+app.use("/project7/auth", authRouter);
+app.use("/project7/profile", profileRouter);
+
+//////////////////////
 app.use((err, req, res, next) => {
   res.status(500).render("students/error", { e: err });
   console.log("有錯誤");
@@ -55,6 +88,6 @@ app.use((err, req, res, next) => {
 //   console.log("我是下一個next");
 // });
 
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log("server正在觀察中!", port);
 });
