@@ -8,5 +8,7 @@ router.get("/index", (req, res) => {
 router.get("/edit", (req, res) => {
   res.render("yoichi/edit");
 });
-
+router.get("/history", (req, res) => {
+  res.render("yoichi/history");
+});
 module.exports = router;
