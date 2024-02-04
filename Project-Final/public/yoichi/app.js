@@ -189,13 +189,17 @@ class Order {
     let dateRecords = localStorage.getItem("dateRecords");
     if (dateRecords == null || dateRecords.includes(null)) {
       let records = JSON.parse(dateRecords);
-      console.log(records);
+      // console.log(JSON.parse(JSON.stringify(records)));
       records = [];
       records.push(itemKey);
       localStorage.setItem("dateRecords", JSON.stringify(records));
     } else {
       let records = JSON.parse(dateRecords);
-      console.log(records);
+      // console.log(JSON.parse(JSON.stringify(records)));
+      if (records.length > 7) {
+        records.shift();
+        // console.log("之後", records);
+      }
       if (records.includes(itemKey)) {
         return;
       }
