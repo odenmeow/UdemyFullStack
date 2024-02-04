@@ -558,8 +558,10 @@ function selectedDate(num) {
     dates.forEach((date) => {
       date.addEventListener("click", (e) => {
         // e.stopPropagation(); // 阻止事件冒泡 不是我要的
-
-        console.log(e.currentTarget); //這才是我要的!
+        let others = document.querySelectorAll(".order-time.date-exist");
+        others.forEach((o) => (o.style.backgroundColor = "initial"));
+        e.target.style.backgroundColor = "aqua";
+        // console.log(e.currentTarget); //這才是我要的!
         let fullStr =
           "yoichiOrders-" + e.currentTarget.querySelector("p").innerText;
         loadOrdersByDate(fullStr);
