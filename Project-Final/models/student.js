@@ -10,14 +10,14 @@ const studentSchema = new Schema({
   age: {
     type: Number,
     default: 18,
-    max: [80, "有點太老了..."],
-    min: [0, "太小了0已經夠扯了"],
+    max: [80, "有點太老了...，本校只限80以下"],
+    min: [10, "太小了，10已經夠扯了"],
   },
   major: String,
   scholarship: {
     merit: {
       type: Number,
-      max: [5000, "學生應得獎學金給太多囉"],
+      max: [5000, "學生應得獎學金給太多囉，最多5000"],
       min: 0,
       default: 0,
     },
