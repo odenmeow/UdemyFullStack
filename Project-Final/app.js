@@ -39,6 +39,12 @@ app.get(["/", "/project3/index"], async (req, res) => {
   console.log("進來了");
   return res.render("project3/index");
 });
+app.get(
+  "/awake",
+  async((req, res) => {
+    return res.send("已喚醒");
+  })
+);
 app.use("/project1", project1Router);
 app.use("/project2", project2Router);
 app.use("/project3", project3Router);
