@@ -23,6 +23,14 @@ class Product {
   static historyUpdate() {
     localStorage.setItem("yoichiProducts", JSON.stringify(Product.products));
   }
+  static generateDefault() {
+    new Product("一串心", 20);
+    new Product("雞肉串", 50);
+    new Product("豬肉串", 40);
+    new Product("香腸", 40);
+    new Product("蔥肉串", 35);
+    this.historyUpdate();
+  }
 }
 function displayHistoryItems() {
   Product.products.forEach(({ name, price }, index) => {
@@ -62,7 +70,29 @@ function displayHistoryItems() {
 // new Product("蔥肉串", 35);
 // new Product("雞肉串", 50);
 // Product.historyUpdate(); //不能單獨直接 否則會把舊資料先清空!
-Product.historyRetrieve();
+class Visit {
+  constructor(first) {
+    this.first = first;
+  }
+  static historyRetrieve() {
+    let data = JSON.parse(localStorage.getItem("visited"));
+    console.log(data, "(true=已訪問過)");
+    if (!data) {
+      this.historyUpdate(); // 沒訪問過 visited=null
+    } else {
+      Product.historyRetrieve();
+    }
+  }
+  static historyUpdate() {
+    //  if not get a visit log
+    //  generate default Products && visit log =true
+    let data = JSON.stringify(new Visit(true));
+    Product.generateDefault();
+    localStorage.setItem("visited", data);
+  }
+}
+Visit.historyRetrieve();
+// Product.historyRetrieve(); 併入Visit.historyRetrieve了
 // Step1  Display the history items on user's screen.
 // 剛連線，初始畫面透過localStorage查找歷史資料、去建立html顯示畫面出來
 displayHistoryItems();
