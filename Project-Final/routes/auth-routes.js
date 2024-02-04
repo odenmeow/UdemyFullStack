@@ -14,7 +14,7 @@ router.get("/logout", (req, res) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/auth/login",
+    failureRedirect: "/project7/auth/login",
     failureFlash: "登入失敗，帳號或密碼錯誤", // 自動套入 req.locals.error這邊
   }),
   async (req, res) => {
