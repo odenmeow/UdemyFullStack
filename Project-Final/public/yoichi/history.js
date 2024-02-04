@@ -199,7 +199,7 @@ class Order {
     } else {
       let records = JSON.parse(dateRecords);
       // console.log(JSON.parse(JSON.stringify(records)));
-      if (records.length > 7) {
+      if (records.length > 180) {
         records.shift();
         // console.log("之後", records);
       }
