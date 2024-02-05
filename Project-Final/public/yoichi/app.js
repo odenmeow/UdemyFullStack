@@ -197,8 +197,9 @@ class Order {
       let records = JSON.parse(dateRecords);
       // console.log(JSON.parse(JSON.stringify(records)));
       if (records.length > 180) {
-        records.shift();
+        let shiftData = records.shift();
         // console.log("之後", records);
+        localStorage.removeItem(shiftData);
       }
       if (records.includes(itemKey)) {
         return;
