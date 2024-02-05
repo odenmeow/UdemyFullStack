@@ -469,6 +469,7 @@ function selectedDate(num) {
   /* 中間用來刪除 日期的*/
 
   let copydate = JSON.parse(JSON.stringify(dateRecords));
+  copydate.reverse();
   let packsFor3 = 0;
   let target = document.querySelector(".presentation-Area.date-block");
   let dateArr = [];
