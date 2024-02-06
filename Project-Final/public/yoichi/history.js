@@ -235,7 +235,7 @@ function loadOrderPage(date) {
       let btnColor = "danger";
       // console.log(order.status, "狀態");
       if (order.status == "pending") {
-        btnMsg = "未做";
+        btnMsg = "未付";
         btnColor = "warning";
         // return;
       }
