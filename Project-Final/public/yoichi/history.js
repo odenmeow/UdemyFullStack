@@ -563,7 +563,8 @@ function selectedDate(num) {
         let others = document.querySelectorAll(".order-time.date-exist");
         others.forEach((o) => (o.style.backgroundColor = "initial"));
         e.currentTarget.style.backgroundColor = "aqua";
-        // console.log(e.currentTarget); //這才是我要的!
+
+        console.log(e.currentTarget); //這才是我要的!
         let fullStr =
           "yoichiOrders-" + e.currentTarget.querySelector("p").innerText;
         loadOrdersByDate(fullStr);

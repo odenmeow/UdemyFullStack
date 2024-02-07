@@ -25,10 +25,10 @@ class Product {
   }
   static generateDefault() {
     new Product("一串心", 20);
-    new Product("雞肉串", 50);
+    new Product("雞腿串", 60);
     new Product("豬肉串", 40);
     new Product("香腸", 40);
-    new Product("蔥肉串", 35);
+    new Product("蔥肉串", 40);
     this.historyUpdate();
   }
 }
@@ -205,9 +205,9 @@ function synchronizeEditModalContent(parentElement, index) {
               console.log(checkExist.parentElement);
               checkExist.parentElement.addEventListener("animationend", (e) => {
                 console.log("被觸發了");
-                // 直接刪除會跳號，要處理
                 e.target.remove();
-                // 更新 畫面上面的edit-標籤號碼 不要跳號!
+                // 直接刪除會跳號，要處理一下。
+                // 更新 畫面上面的edit-標籤號碼 不要讓它跳號!
                 (function refreshEdit_id() {
                   let displayAreaDiv = document.querySelectorAll(
                     ".yoichi-p-show-edit"

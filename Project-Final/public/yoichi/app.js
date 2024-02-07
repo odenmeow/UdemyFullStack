@@ -198,8 +198,9 @@ class Order {
       // console.log(JSON.parse(JSON.stringify(records)));
       if (records.length > 180) {
         let shiftData = records.shift();
-        // console.log("之後", records);
+        // console.log("之後", records, shiftData);
         localStorage.removeItem(shiftData);
+        // records.push(shiftData);
       }
       if (records.includes(itemKey)) {
         return;
@@ -411,6 +412,8 @@ function calculateAll() {
   });
   subTotal.innerText = subSum;
   let discount = document.querySelector(".yoichi-discountValue");
+  // 暫時取消折扣
+  discountSum = 0;
   discount.innerText = discountSum;
   let total = document.querySelector(".yoichi-totalValue");
   total.innerText = subSum - discountSum;
