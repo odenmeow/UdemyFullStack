@@ -454,6 +454,11 @@ function sendOrderBtn() {
         })();
         return; //不做事
       }
+      document
+        .querySelectorAll(".popover.custom-popover")
+        .forEach((popover) => {
+          popover.remove();
+        });
       // if找不到 .revise 則新增訂單，否則修改Orders的Order內容即可 !
       new Order();
       Order.historyUpdate();
