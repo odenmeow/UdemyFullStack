@@ -277,6 +277,11 @@ function displayProducts(info, oid) {
       deprecatedBtn.addEventListener("click", (e) => {
         // 顯示是否作廢 (防止按錯)
         let confirmed = window.confirm("確定要作廢?");
+        document
+          .querySelectorAll(".popover.custom-popover")
+          .forEach((popover) => {
+            popover.remove();
+          });
         if (confirmed) {
           Order.orders[oid].status = "deprecated";
           Order.historyUpdate();
