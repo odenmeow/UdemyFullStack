@@ -748,7 +748,12 @@ function loadOrderPage() {
               console.log("paidBtn數字是" + header_num);
               // 去修改對應編號的 order 狀態為 paid
               Order.orders[header_num].status = "paid";
-              document.querySelector(`[data-bs-title="${header_num}"]`).click();
+              // document.querySelector(`[data-bs-title="${header_num}"]`).click();
+              document
+                .querySelectorAll(".popover.custom-popover")
+                .forEach((popover) => {
+                  popover.remove();
+                });
               Order.historyUpdate(); //保存狀態否則畫面f5刷新就沒了
               console.log(Order.orders[header_num]);
               displayProducts("new"); //編輯到一半付錢就視同放棄修改
@@ -762,6 +767,11 @@ function loadOrderPage() {
               displayProducts("revise", header_num);
               // 應該要自動往上
               let header = document.querySelector("header");
+              document
+                .querySelectorAll(".popover.custom-popover")
+                .forEach((popover) => {
+                  popover.remove();
+                });
               console.log("滑動中");
               header.scrollIntoView({
                 behavior: "instant",
@@ -774,9 +784,9 @@ function loadOrderPage() {
               if (Order.orders[header_num].status == "paid") {
                 // 已經付錢，直接修改狀態，然後刷新，讓訂單離場
                 Order.orders[header_num].status = "fulfilled";
-                document
-                  .querySelector(`[data-bs-title="${header_num}"]`)
-                  .click();
+                // document
+                //   .querySelector(`[data-bs-title="${header_num}"]`)
+                //   .click();
                 Order.historyUpdate(); //保存狀態否則畫面f5刷新就沒了
                 displayProducts("new");
                 loadOrderPage();
@@ -797,6 +807,11 @@ function loadOrderPage() {
                     "opacityTransitions 2.1s ease forwards";
                 })();
               }
+              document
+                .querySelectorAll(".popover.custom-popover")
+                .forEach((popover) => {
+                  popover.remove();
+                });
             });
           }
         }
