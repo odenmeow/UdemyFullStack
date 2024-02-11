@@ -5,6 +5,7 @@ class HTMLTime {
   static showTime() {
     let clock = document.querySelector(".yoichi-orderTime");
     let { timeStr, dateStr } = generateTime();
+    if (clock == null) return;
     clock.innerText = timeStr;
   }
   static t_showUp() {
@@ -68,7 +69,7 @@ class PickedProduct {
         }
       });
       // 下面會直接刪除 第i個物件
-      console.log("i=", i);
+      //console.log("i=", i);
       if (i != undefined) {
         PickedProduct.pickedProducts.splice(i, 1);
       }
@@ -277,11 +278,11 @@ function displayProducts(info, oid) {
       deprecatedBtn.addEventListener("click", (e) => {
         // 顯示是否作廢 (防止按錯)
         let confirmed = window.confirm("確定要作廢?");
-        document
-          .querySelectorAll(".popover.custom-popover")
-          .forEach((popover) => {
-            popover.remove();
-          });
+        document.querySelectorAll("button.yoichi-triplebtn").forEach((b) => {
+          if (b.hasAttribute("aria-describedby")) {
+            b.click();
+          }
+        });
         if (confirmed) {
           Order.orders[oid].status = "deprecated";
           Order.historyUpdate();
@@ -459,16 +460,17 @@ function sendOrderBtn() {
         })();
         return; //不做事
       }
-      document
-        .querySelectorAll(".popover.custom-popover")
-        .forEach((popover) => {
-          popover.remove();
-        });
       // if找不到 .revise 則新增訂單，否則修改Orders的Order內容即可 !
+
+      document.querySelectorAll("button.yoichi-triplebtn").forEach((b) => {
+        if (b.hasAttribute("aria-describedby")) {
+          b.click();
+        }
+      });
       new Order();
       Order.historyUpdate();
       // else{ 修改ooxx}
-      console.log(Order.orders);
+      //console.log(Order.orders);
       (function clearScreen() {
         let discount = document.querySelector(".yoichi-discountValue");
         discount.innerText = "";
@@ -495,7 +497,10 @@ function sendOrderBtn() {
         warn.style.animation = "opacityTransitions 2.1s ease forwards";
         setTimeout(() => {
           let targetElement = document.querySelector(".presentation-Area");
-          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }, 100);
       })();
       loadOrderPage();
@@ -524,6 +529,12 @@ function sendOrderBtn() {
         return; //不做事
       }
       let oid = document.querySelector(".yoichi-orderNumber").innerText;
+      document.querySelectorAll("button.yoichi-triplebtn").forEach((b) => {
+        if (b.hasAttribute("aria-describedby")) {
+          console.log("被點囉");
+          b.click();
+        }
+      });
       let o = new Order();
       Order.orders.pop();
       Order.orders[oid] = o;
@@ -578,7 +589,7 @@ function generateTime(str) {
   btn.addEventListener("click", (e) => {
     try {
       let header = document.querySelector("header");
-      console.log("滑動中");
+      // console.log("滑動中");
       header.scrollIntoView({
         behavior: "instant",
         block: "start",
@@ -586,7 +597,7 @@ function generateTime(str) {
 
       displayProducts("new");
     } catch (e) {
-      console.log(e, "錯誤");
+      console.log(e, "滑動中這邊錯誤");
     }
   });
 })();
@@ -651,12 +662,13 @@ function loadOrderPage() {
                 <p>${order.totalPrice}</p>
               </div>
               <div class="order-buttonMotion">
-                <button type="button" data-bs-trigger="focus" data-bs-custom-class="custom-popover" data-bs-placement="top"  class="yoichi-triplebtn btn btn-lg btn-${btnColor}" data-bs-toggle="popover" data-bs-title="${index}" data-bs-content="生成中...">${btnMsg}</button>
+                <button type="button"  data-bs-custom-class="custom-popover" data-bs-placement="top"  class="yoichi-triplebtn btn btn-lg btn-${btnColor}" data-bs-toggle="popover" data-bs-title="${index}" data-bs-content="生成中...">${btnMsg}</button>
 
               </div>
             </div>
           </div>
      `;
+      //   data-bs-trigger="focus"
       let shownExist = orderScreen.querySelector(".yoichi-order-shown");
       if (shownExist) {
         orderScreen.insertBefore(yoichi_order_shown, shownExist);
@@ -726,10 +738,10 @@ function loadOrderPage() {
           mutation.type === "attributes" &&
           mutation.attributeName === "aria-describedby"
         ) {
-          console.log(
-            "aria-describedby 屬性已變化，值為：",
-            btn.getAttribute("aria-describedby")
-          );
+          // console.log(
+          //   "aria-describedby 屬性已變化，值為：",
+          //   btn.getAttribute("aria-describedby")
+          // );
           // 在這裡執行，null變化也會被偵測，所以要過濾
           let popID = btn.getAttribute("aria-describedby");
           if (popID) {
@@ -755,41 +767,50 @@ function loadOrderPage() {
               `.fulfillOrder.order-${header_num} button`
             );
             paidBtn.addEventListener("click", (e) => {
-              console.log("paidBtn數字是" + header_num);
+              // console.log("paidBtn數字是" + header_num);
               // 去修改對應編號的 order 狀態為 paid
               Order.orders[header_num].status = "paid";
-              // document.querySelector(`[data-bs-title="${header_num}"]`).click();
               document
-                .querySelectorAll(".popover.custom-popover")
-                .forEach((popover) => {
-                  popover.remove();
+                .querySelectorAll("button.yoichi-triplebtn")
+                .forEach((b) => {
+                  if (b.hasAttribute("aria-describedby")) {
+                    console.log("被點囉");
+                    b.click();
+                  }
                 });
               Order.historyUpdate(); //保存狀態否則畫面f5刷新就沒了
-              console.log(Order.orders[header_num]);
+              // console.log(Order.orders[header_num]);
               displayProducts("new"); //編輯到一半付錢就視同放棄修改
 
               loadOrderPage();
             });
             reviseBtn.addEventListener("click", (e) => {
-              console.log("reviseBtn數字是" + header_num);
+              //console.log("reviseBtn數字是" + header_num);
               // 去顯示訂單修改畫面出來
               // 已經付款的 只能廢棄訂單 (跳出提示)
               displayProducts("revise", header_num);
               // 應該要自動往上
               let header = document.querySelector("header");
-              document
-                .querySelectorAll(".popover.custom-popover")
-                .forEach((popover) => {
-                  popover.remove();
-                });
-              console.log("滑動中");
+              //console.log("滑動中");
               header.scrollIntoView({
                 behavior: "instant",
                 block: "start",
               });
+              // document
+              //   .querySelector(`[data-bs-title="${header_num}"]`)
+              //   .click();
+              document
+                .querySelectorAll("button.yoichi-triplebtn")
+                .forEach((b) => {
+                  if (b.hasAttribute("aria-describedby")) {
+                    console.log("被點囉");
+
+                    b.click();
+                  }
+                });
             });
             fulfillBtn.addEventListener("click", (e) => {
-              console.log("fulfillBtn數字是" + header_num);
+              // console.log("fulfillBtn數字是" + header_num);
               // 去修改對應編號的 order 狀態為 fulfill
               if (Order.orders[header_num].status == "paid") {
                 // 已經付錢，直接修改狀態，然後刷新，讓訂單離場
@@ -797,6 +818,14 @@ function loadOrderPage() {
                 // document
                 //   .querySelector(`[data-bs-title="${header_num}"]`)
                 //   .click();
+                document
+                  .querySelectorAll("button.yoichi-triplebtn")
+                  .forEach((b) => {
+                    if (b.hasAttribute("aria-describedby")) {
+                      console.log("被點囉");
+                      b.click();
+                    }
+                  });
                 Order.historyUpdate(); //保存狀態否則畫面f5刷新就沒了
                 displayProducts("new");
                 loadOrderPage();
@@ -818,9 +847,12 @@ function loadOrderPage() {
                 })();
               }
               document
-                .querySelectorAll(".popover.custom-popover")
-                .forEach((popover) => {
-                  popover.remove();
+                .querySelectorAll("button.yoichi-triplebtn")
+                .forEach((b) => {
+                  if (b.hasAttribute("aria-describedby")) {
+                    console.log("被點囉");
+                    b.click();
+                  }
                 });
             });
           }
